@@ -28,6 +28,9 @@ $conDestino = new PDO("mysql:dbname=nucleoweb;host=localhost", "root", "1234", $
 const SITE = "http://192.168.254.222/NucleoWeb/wordpress/";
 const ARQUIVOS = SITE . "wp-content/uploads/";
 
+//Alterar se o prefixo das tabelas for diferente
+$prefixo_tabela = "wp_";
+
 try {
     $conDestino->beginTransaction();
 
@@ -88,7 +91,7 @@ try {
             $relacao_pasta = $ano_publicacao . '/' . explode("-", explode(" ", $data)[0])[1] . "/";
 
 
-            $query = $conDestino->prepare("INSERT INTO wp_posts 
+            $query = $conDestino->prepare("INSERT INTO {$prefixo_tabela}posts 
                 (ID,
                 post_author,
                 post_date,

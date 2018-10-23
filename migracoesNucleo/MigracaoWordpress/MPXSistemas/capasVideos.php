@@ -29,7 +29,7 @@ const SITE = "http://192.168.254.222/NucleoWeb/wordpress/";
 const ARQUIVOS = SITE . "wp-content/uploads/";
 
 //ALTERAR ID PARA SELECIONAR AS MÍDIAS REFERENTES À MIGRAÇÃO
-const ID = 1858;
+const ID = 2265;
 
 //Alterar se o prefixo das tabelas for diferente
 $prefixo_tabela = "wp_";
@@ -47,7 +47,6 @@ try {
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
 
         $contador = 0;
-        $galerias = [];
 
 //        echo "<pre>";
 //        print_r($result);
@@ -57,6 +56,7 @@ try {
         foreach ($result as $i => $v) {
             $meta = $v['meta_value'];
             $meta_id = $v['post_id'];
+//            $post_id_meta = $v['id'];
 
 
             $midia_nome = explode(".", explode("/", $meta)[2])[0];
@@ -72,28 +72,29 @@ try {
 
 //            echo $post_id . "<br>";
 //            echo $midia_nome . "<br>";
-
+//die;
 
             if (isset($type_midia) && isset($post_id)) {
                 $query_post = $conDestino->prepare("
         SELECT * FROM {$prefixo_tabela}posts where ID='" . $meta_id . "'"
                 );
+                $query_video = $conDestino->prepare("
+        SELECT * FROM {$prefixo_tabela}posts where ID='" . $post_id . "'"
+                );
 
                 $bool_post = $query_post->execute();
+                $bool_video = $query_video->execute();
                 if ($bool_post) {
                     $result_post = $query_post->fetchAll(PDO::FETCH_ASSOC);
+                    $result_video = $query_video->fetchAll(PDO::FETCH_ASSOC);
 
 //                echo "<pre>";
 //                print_r($result_post);
+//                die;
 
                     if (isset($result_post[0])) {
-                        if (array_key_exists($post_id, $galerias) && $type_midia == "galeria") {
-                            $galerias[$post_id][] = $result_post[0]['ID'];
-                        } else if (!array_key_exists($post_id, $galerias) && $type_midia == "galeria") {
-                            $galerias[$post_id][] = $result_post[0]['ID'];
-                        }
-
                         $post_meta_id = $result_post[0]['ID'];
+                        $video = $result_video[0]['post_content'];
 
                         if ($type_midia == "capa") {
                             $query_relacao_post_capa = $conDestino->prepare("INSERT INTO {$prefixo_tabela}postmeta(meta_id, post_id, meta_key, meta_value) values(null, ?,'miniatura', ?)");
@@ -102,11 +103,30 @@ try {
 //
                             $query_relacao_post_capa->execute();
 
-                            $query_relacao_post_miniatura = $conDestino->prepare("INSERT INTO {$prefixo_tabela}postmeta(meta_id, post_id, meta_key, meta_value) values(null, ?,'_miniatura', 'field_5b5ec69578a1c')");
+                            $query_relacao_post_miniatura = $conDestino->prepare("INSERT INTO {$prefixo_tabela}postmeta(meta_id, post_id, meta_key, meta_value) values(null, ?,'_miniatura', 'field_5b5d8d98caf5d')");
                             $query_relacao_post_miniatura->bindValue(1, $post_id);
 //
                             $query_relacao_post_miniatura->execute();
                             echo "Capa para galeria {$post_id} <br>";
+                        }
+
+                        if($video != ""){
+                            $query_relacao_video_link = $conDestino->prepare("INSERT INTO {$prefixo_tabela}postmeta(meta_id, post_id, meta_key, meta_value) values(null, ?,'youtube', ?)");
+                            $query_relacao_video_link->bindValue(1, $post_id);
+                            $query_relacao_video_link->bindValue(2, $video);
+//
+                            $query_relacao_video_link->execute();
+
+                            $query_relacao_video__ = $conDestino->prepare("INSERT INTO {$prefixo_tabela}postmeta(meta_id, post_id, meta_key, meta_value) values(null, ?,'_youtube', 'field_5b5d8d7fcaf5c')");
+                            $query_relacao_video__->bindValue(1, $post_id);
+//
+                            $query_relacao_video__->execute();
+
+                            $update_query_video =  $conDestino->prepare("UPDATE {$prefixo_tabela}posts set post_content = '' where ID = ?");
+                            $update_query_video->bindValue(1, $post_id);
+                            $update_query_video->execute();
+
+                            echo "Link para o vídeo {$post_id} <br><br>";
                         }
                     }
                 }
@@ -114,33 +134,9 @@ try {
         }
     }
 
-    if (count($galerias) > 0) {
-        $contaGaleria = 0;
-        foreach ($galerias as $i => $v) {
-            $contaGaleria++;
-            $ids = implode($v, ",");
-            $galeria = '[gallery link="file" ids="' . $ids . '"]';
-
-            $query_relacao_post_capa = $conDestino->prepare("INSERT INTO {$prefixo_tabela}postmeta(meta_id, post_id, meta_key, meta_value) values(null, ?,'galeria', ?)");
-            $query_relacao_post_capa->bindValue(1, $i);
-            $query_relacao_post_capa->bindValue(2, $galeria);
-//
-            $query_relacao_post_capa->execute();
-
-            $query_relacao_galeria = $conDestino->prepare("INSERT INTO {$prefixo_tabela}postmeta(meta_id, post_id, meta_key, meta_value) values(null, ?,'_galeria', 'field_5b5ec6a178a1d')");
-
-            $query_relacao_galeria->bindValue(1, $i);
-
-            $query_relacao_galeria->execute();
-
-            echo "Galeria inserida em notícia {$i} <br>";
-        }
-    }
 
     echo "<pre>";
-//    print_r($galerias);
-    echo "Galerias: " . count($galerias) . "<br>";
-    echo "Relações: " . $contador . "<br>" . "Galerias inseridas: " . $contaGaleria;
+    echo "Relações: " . $contador . "<br>";
 
     $conDestino->commit();
 

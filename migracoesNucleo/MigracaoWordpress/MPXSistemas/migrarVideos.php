@@ -28,6 +28,9 @@ $conDestino = new PDO("mysql:dbname=nucleoweb;host=localhost", "root", "1234", $
 const SITE = "http://192.168.254.222/NucleoWeb/wordpress/";
 const ARQUIVOS = SITE . "wp-content/uploads/";
 
+//Alterar se o prefixo das tabelas for diferente
+$prefixo_tabela = "wp_";
+
 try {
     $conDestino->beginTransaction();
 
@@ -59,19 +62,6 @@ try {
             $data_gmt = strftime('%Y-%m-%d %H:%M:%S', $timestamp);
             $video = $v['video'];
 
-
-
-
-
-
-//            $midia = $v['foto'];
-//            $titulo_capa = md5(removeAcentos($midia, "-"));
-//            $nome_midia = explode("/", $midia)[2];
-
-
-//            $fileInfo = new SplFileInfo("antigo/{$midia}");
-//            $ext_file = $fileInfo->getExtension();
-
             if (strlen($titulo) > 199) {
                 $slug = removeAcentos(limitarTexto($titulo, 195), "-");
             } else {
@@ -91,49 +81,49 @@ try {
             $relacao_pasta = $ano_publicacao . '/' . explode("-", explode(" ", $data)[0])[1] . "/";
 
 
-//            $query = $conDestino->prepare("INSERT INTO wp_posts
-//                (ID,
-//                post_author,
-//                post_date,
-//                post_date_gmt,
-//                post_content,
-//                post_title,
-//                post_excerpt,
-//                post_status,
-//                comment_status,
-//                ping_status,
-//                post_password,
-//                post_name,
-//                to_ping,
-//                pinged,
-//                post_modified,
-//                post_modified_gmt,
-//                post_content_filtered,
-//                post_parent,
-//                guid,
-//                menu_order,
-//                post_type,
-//                post_mime_type,
-//                comment_count)
-//                VALUES
-//                (null,1,?,?,?,?,'','publish','closed','closed','',?,'','',?,?,'',0,'',0,'galerias','',0)");
-//
-//            $query->bindValue(1, $data);
-//            $query->bindValue(2, $data_gmt);
-//            $query->bindValue(3, $texto);
-//            $query->bindValue(4, $titulo);
-//            $query->bindValue(5, $slug);
-//            $query->bindValue(6, $data);
-//            $query->bindValue(7, $data_gmt);
-//
-//            $query->execute();
-//
-//            $post_id = $conDestino->lastInsertId();
-//
-//            if ($post_id <= 0) {
-//                echo "falha ao inserir post na linha " . $i;
-//                throw new Exception("Erro veio!");
-//            }
+            $query = $conDestino->prepare("INSERT INTO {$prefixo_tabela}posts
+                (ID,
+                post_author,
+                post_date,
+                post_date_gmt,
+                post_content,
+                post_title,
+                post_excerpt,
+                post_status,
+                comment_status,
+                ping_status,
+                post_password,
+                post_name,
+                to_ping,
+                pinged,
+                post_modified,
+                post_modified_gmt,
+                post_content_filtered,
+                post_parent,
+                guid,
+                menu_order,
+                post_type,
+                post_mime_type,
+                comment_count)
+                VALUES
+                (null,1,?,?,?,?,'','publish','closed','closed','',?,'','',?,?,'',0,'',0,'videos','',0)");
+
+            $query->bindValue(1, $data);
+            $query->bindValue(2, $data_gmt);
+            $query->bindValue(3, $video);
+            $query->bindValue(4, $titulo);
+            $query->bindValue(5, $slug);
+            $query->bindValue(6, $data);
+            $query->bindValue(7, $data_gmt);
+
+            $query->execute();
+
+            $post_id = $conDestino->lastInsertId();
+
+            if ($post_id <= 0) {
+                echo "falha ao inserir post na linha " . $i;
+                throw new Exception("Erro veio!");
+            }
 
             if(strstr($video,"v=") != false){
                 $cod_video = explode("v=", $video)[1];

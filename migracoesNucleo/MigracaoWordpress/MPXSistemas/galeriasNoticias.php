@@ -31,11 +31,14 @@ const ARQUIVOS = SITE . "wp-content/uploads/";
 //ALTERAR ID PARA SELECIONAR AS MÍDIAS REFERENTES À MIGRAÇÃO
 const ID = 2;
 
+//Alterar se o prefixo das tabelas for diferente
+$prefixo_tabela = "wp_";
+
 try {
     $conDestino->beginTransaction();
 
-    $query = $conDestino->prepare('
-        SELECT * FROM wp_postmeta where meta_key="_wp_attached_file" and meta_id > ' . ID
+    $query = $conDestino->prepare("
+        SELECT * FROM {$prefixo_tabela}postmeta where meta_key='_wp_attached_file' and meta_id > " . ID
     );
 
     $bool = $query->execute();
@@ -53,7 +56,7 @@ try {
 
         foreach ($result as $i => $v) {
             $meta = $v['meta_value'];
-            $meta_id = $v['meta_id'];
+            $meta_id = $v['post_id'];
 
 
             $midia_nome = explode(".", explode("/", $meta)[2])[0];
@@ -72,8 +75,8 @@ try {
 
 
             if (isset($type_midia) && isset($post_id)) {
-                $query_post = $conDestino->prepare('
-        SELECT * FROM wp_posts where post_title="' . $midia_nome . '"'
+                $query_post = $conDestino->prepare("
+        SELECT * FROM {$prefixo_tabela}posts where ID='" . $meta_id . "'"
                 );
 
                 $bool_post = $query_post->execute();
@@ -93,7 +96,7 @@ try {
                         $post_meta_id = $result_post[0]['ID'];
 
                         if ($type_midia == "capa") {
-                            $query_relacao_post_capa = $conDestino->prepare("INSERT INTO wp_postmeta(meta_id, post_id, meta_key, meta_value) values(null, ?,'_thumbnail_id', ?)");
+                            $query_relacao_post_capa = $conDestino->prepare("INSERT INTO {$prefixo_tabela}postmeta(meta_id, post_id, meta_key, meta_value) values(null, ?,'_thumbnail_id', ?)");
                             $query_relacao_post_capa->bindValue(1, $post_id);
                             $query_relacao_post_capa->bindValue(2, $post_meta_id);
 
@@ -113,7 +116,7 @@ try {
             $ids = implode($v, ",");
             $galeria = '[gallery link="file" ids="' . $ids . '"]';
 
-            $query_relacao_post_capa = $conDestino->prepare("update wp_posts set post_content = concat(post_content, ?) where id = ?");
+            $query_relacao_post_capa = $conDestino->prepare("update {$prefixo_tabela}posts set post_content = concat(post_content, ?) where id = ?");
 
             $query_relacao_post_capa->bindValue(1, $galeria);
             $query_relacao_post_capa->bindValue(2, $i);
