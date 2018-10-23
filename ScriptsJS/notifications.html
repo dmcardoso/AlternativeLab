@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script>
+        // Solicita a permissão para realizar as notificações
+        document.addEventListener('DOMContentLoaded', function () {
+            if (Notification.permission !== "granted")
+                Notification.requestPermission();
+        });
+        // Função para exibir as notificações
+        function NofiticacaoGoogleChrome() {
+            if (!Notification) {
+                alert('Desktop notifications not available in your browser. Try Chromium.');
+                return;
+            }
+
+            if (Notification.permission !== "granted")
+                Notification.requestPermission();
+            else {
+                var notification = new Notification('Teste de notificação', {
+                    icon: 'http://app.nucleodesk.com.br/assets/img/logo.png',
+                    body: "Teste de notificação",
+                    vibrate: [300, 100, 400]
+                });
+
+                notification.onclick = function () {
+                    window.open("http://site.com.br/pagina.html");
+                };
+
+            }
+
+        }
+    </script>
+</head>
+<body>
+
+<script type="text/javascript">
+    window.onload = function(){
+        NofiticacaoGoogleChrome();
+    }
+</script>
+
+</body>
+</html>

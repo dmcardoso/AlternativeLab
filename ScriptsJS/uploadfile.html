@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="br">
+<head>
+    <meta charset="UTF-8">
+    <script>
+        //exemplo funcional
+        let uploadFile = (file, hide, xhr, success) => {
+            let formData = new FormData();
+            formData.set('file', file);
+            formData.set('acao', "enviar");
+
+            function hideProgress() {
+                hide();
+            }
+
+            Q.ajax({
+                url: Q.App.getData("server") + 'api/midias',
+                type: 'POST',
+                data: formData,
+                success: function (data) {
+                    success(data);
+                    hideProgress();
+                },
+                error: function () {
+                    hideProgress();
+                },
+                cache: false,
+                contentType: false,
+                processData: false,
+                xhrFields: {
+                    withCredentials: true
+                },
+                xhr: function () {
+                    // Avalia se tem suporte a propriedade upload
+                    let myXhr = Q.ajaxSettings.xhr();
+                    if (myXhr.upload) {
+                        myXhr.upload.addEventListener('progress', function (oEvent) {
+                            if (oEvent.lengthComputable) {
+                                let percentComplete = oEvent.loaded / oEvent.total;
+                                percentComplete = Math.round(percentComplete * 100);
+                                xhr(percentComplete);
+                            } else {
+                                // Não é possível calcular informações de progresso uma vez que a dimensão total é desconhecida
+                            }
+                        }, false);
+                    }
+                    return myXhr;
+                }
+            });
+        };
+
+        //stackoverflow
+        $("#formulario").submit(function() {
+            var formData = new FormData(this);
+
+            $.ajax({
+                url: window.location.pathname,
+                type: 'POST',
+                data: formData,
+                success: function(data) {
+                    alert(data)
+                },
+                cache: false,
+                contentType: false,
+                processData: false,
+                xhr: function() { // Custom XMLHttpRequest
+                    var myXhr = $.ajaxSettings.xhr();
+                    if (myXhr.upload) { // Avalia se tem suporte a propriedade upload
+                        myXhr.upload.addEventListener('progress', function() {
+                            /* faz alguma coisa durante o progresso do upload */
+                        }, false);
+                    }
+                    return myXhr;
+                }
+            });
+        });
+
+
+    </script>
+</head>
+<body>
+</body>
+</html>

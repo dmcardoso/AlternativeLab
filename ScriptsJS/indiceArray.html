@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="br">
+<head>
+    <meta charset="UTF-8">
+    <script>
+        const array = [
+            {
+                atendimento_id: 15,
+                datas: [
+                    "31/08/2018",
+                    "27/08/2018",
+                    "28/08/2018",
+                    "29/08/2018",
+                    "29/08/2018",
+                ]
+            },
+            {
+                atendimento_id: 16,
+                datas: [
+                    "30/08/2018",
+                    "25/08/2018",
+                    "28/08/2018",
+                    "26/08/2018",
+                    "22/08/2018",
+                ]
+            },
+            {
+                atendimento_id: 17,
+                datas: [
+                    "18/08/2018",
+                    "19/08/2018",
+                    "16/08/2018",
+                    "25/08/2018",
+                    "29/08/2018",
+                ]
+            },
+            {
+                atendimento_id: 18,
+                datas: [
+                    "30/08/2018",
+                    "31/08/2018",
+                    "28/08/2018",
+                    "29/08/2018",
+                    "27/08/2018",
+                ]
+            }
+        ];
+
+        // let atendimento = array.filter(function (value) {
+        //     return value.atendimento_id === 16;
+        // });
+        //
+        // let data = atendimento[0].datas.filter(function (value) {
+        //     return value === "25/08/2018";
+        // });
+
+
+        function search(array, id, data) {
+
+            return array.some(val => {
+                return id === val.atendimento_id && val.datas.some(dt => data === dt);
+            })
+
+        }
+
+        let condicao = search(array,18,"27/08/2018");
+
+        console.log(condicao)
+
+    </script>
+</head>
+<body>
+</body>
+</html>
