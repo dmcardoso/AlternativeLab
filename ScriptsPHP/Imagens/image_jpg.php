@@ -31,9 +31,9 @@ imagecopyresampled($image_final, $imagem_original,
 //header("Content-type: image/jpg");
 //imagejpeg($imagem_final, null, 70);
 //imagepng($image_final, "mini_imagem.png");
-imagejpeg($image_final, "mini_jpg.jpg", 100);
+//imagejpeg($image_final, "mini_jpg.jpg", 100);
 imagejpeg($image_final, null, 100);
 
-echo "Imagem redimensionada com sucesso";
+//echo "Imagem redimensionada com sucesso";
 
 ?>
