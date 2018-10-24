@@ -26,10 +26,14 @@ $conDestino = new PDO("mysql:dbname=nucleoweb;host=localhost", "root", "1234", $
 
 // ALTERAR PARA USAR NO CAMPO GUID QUE É O DOMÍNIO DO SITE
 const SITE = "http://muricilandia.to.gov.br/";
-const SITE_UPLOADS = SITE. "wp-content/uploads/";
+const SITE_UPLOADS = SITE . "wp-content/uploads/";
 
 //Alterar se o prefixo das tabelas for diferente
 $prefixo_tabela = "wp_";
+
+$ano_atual = date("Y");
+$mes_atual = date("m");
+$ano_mes_atual = $ano_atual . "/" . $mes_atual;
 
 try {
     $conDestino->beginTransaction();
@@ -53,19 +57,20 @@ try {
         $galerias = [];
         $contador = 0;
         $contadorNoticias = 0;
-        $contadoranexos = 0;
+        $contador_anexos = 0;
+        $contador_capa = 0;
         foreach ($result as $i => $v) {
             $contadorNoticias++;
             $id = $v['id'];
             $midia = $v['foto'];
             $texto = remove_emoji($v['texto']);
             $titulo = $v['titulo'];
-            $data = ($v['data'] != "" || $v['data'] != null) ? $v['data'] : null;
+//            $data = ($v['data'] != "" || $v['data'] != null) ? $v['data'] : null;
             $titulo_capa = ($v['titulo_capa'] != null || $v['titulo_capa'] != "") ? md5(removeAcentos($v['titulo_capa'], "-")) : md5(removeAcentos($midia, "-"));
 
             if ($midia != "") {
                 $nome_midia = explode("/", $midia)[1];
-                $mimtype = mime_content_type("antigo/" . $midia);
+//                $mimtype = mime_content_type("antigo/" . $midia);
 
                 $fileInfo = new SplFileInfo("antigo/{$midia}");
                 $ext_file = $fileInfo->getExtension();
@@ -77,14 +82,14 @@ try {
                 $slug = removeAcentos($titulo, "-");
             }
 
-            if ($data != null) {
+            if (isset($data) && $data != null) {
                 $timestamp = strtotime($data) + (3 * (60 * 60));
                 $data_gmt = strftime('%Y-%m-%d %H:%M:%S', $timestamp);
                 $ano_publicacao = explode("-", explode(" ", $data)[0])[0];
                 $mes_publicacao = explode("-", explode(" ", $data)[0])[1];
-            }else{
-                $ano_publicacao = "2018";
-                $mes_publicacao = "10";
+            } else {
+                $ano_publicacao = $ano_atual;
+                $mes_publicacao = $mes_atual;
             }
 
             if (!is_dir("novo/" . $ano_publicacao)) {
@@ -96,114 +101,136 @@ try {
 
             $relacao_pasta = $ano_publicacao . '/' . $mes_publicacao . "/";
 
+            $query = $conDestino->prepare("INSERT INTO {$prefixo_tabela}posts
+                (ID,
+                post_author,
+                post_content,
+                post_title,
+                post_excerpt,
+                post_status,
+                comment_status,
+                ping_status,
+                post_password,
+                post_name,
+                to_ping,
+                pinged,
+                post_content_filtered,
+                post_parent,
+                guid,
+                menu_order,
+                post_type,
+                post_mime_type,
+                comment_count)
+                VALUES
+                (null,1,?,?,'','publish','closed','closed','',?,'','','',0,'',0,'page','',0)");
+
+            $query->bindValue(1, $texto);
+            $query->bindValue(2, $titulo);
+            $query->bindValue(3, $slug);
+
+            $query->execute();
+
+            $post_id = $conDestino->lastInsertId();
+
+            if ($post_id <= 0) {
+                echo "falha ao inserir post na linha " . $i;
+                throw new Exception("Erro veio!");
+            }
+
             $query_anexos_com_link = $conOrigem->prepare(
                 "SELECT * FROM institucional_downloads where cod_institucional = {$id}"
             );
 
             $bool_anexos = $query_anexos_com_link->execute();
-            if($bool_anexos){
+            if ($bool_anexos) {
                 $result_anexos = $query_anexos_com_link->fetchAll(PDO::FETCH_ASSOC);
 
-                if(count($result_anexos) > 0){
+                if (count($result_anexos) > 0) {
 //                    echo "<pre>";
 //                    print_r($result_anexos);
 //                    continue;
-                    foreach ($result_anexos as $idx => $value){
+                    foreach ($result_anexos as $idx => $value) {
+                        $contador_anexos++;
                         $arquivo_anexo = $value['arquivo'];
                         $titulo_anexo = md5(removeAcentos($value['arquivo'], "-"));
                         $data_anexo = ($value['data'] != "" || $value['data'] != null) ? $value['data'] : null;
                         $titulo_link_anexo = $value['titulo'];
-                        $tag_link = "<br><a href='".SITE_UPLOADS."(link_anexo_aqui)'>{$titulo_link_anexo}</a>";
-
+                        $info_anexo = new SplFileInfo("antigo/{$arquivo_anexo}");
+                        $fileext = $info_anexo->getExtension();
+//                        echo "<pre>";
+//                        echo htmlentities($tag_link);
+//                        die;
                         if ($data_anexo != null) {
                             $ano_publicacao_anexo = explode("-", explode(" ", $data_anexo)[0])[0];
                             $mes_publicacao_anexo = explode("-", explode(" ", $data_anexo)[0])[1];
-                        }else{
+                        } else {
                             $ano_publicacao_anexo = "2018";
                             $mes_publicacao_anexo = "10";
                         }
+                        $pasta_arquivos = "novo/arquivos";
 
-                        if (!is_dir("novo/" . $ano_publicacao_anexo)) {
-                            mkdir("novo/" . $ano_publicacao_anexo);
+                        if (!is_dir("novo/" . $ano_atual)) {
+                            mkdir("novo/" . $ano_atual);
                         }
-                        if (!is_dir("novo/" . $ano_publicacao_anexo . '/' . $mes_publicacao_anexo)) {
-                            mkdir("novo/" . $ano_publicacao_anexo . '/' . $mes_publicacao_anexo);
+                        if (!is_dir("novo/" . $ano_atual . '/' . $mes_atual)) {
+                            mkdir("novo/" . $ano_atual . '/' . $mes_atual);
+                        }
+                        if (!is_dir("novo/arquivos")) {
+                            mkdir("novo/arquivos");
                         }
 
-                        $relacao_pasta_anexo = $ano_publicacao_anexo . '/' . $mes_publicacao_anexo . "/";
+                        $relacao_pasta_anexo = $ano_mes_atual;
+                        $tag_link = "<br><a href='" . SITE_UPLOADS . "{$ano_mes_atual}/{$post_id}_{$titulo_anexo}.{$fileext}'>{$titulo_link_anexo}</a>";
+
+
+                        if(copy("antigo/{$arquivo_anexo}", $pasta_arquivos . "/{$post_id}_" . $titulo_anexo.".".$fileext)){
+                            $query_link_anexo = $conDestino->prepare("update {$prefixo_tabela}posts set post_content = concat(post_content, ?) where id = ?");
+
+                            $query_link_anexo->bindValue(1, $tag_link);
+                            $query_link_anexo->bindValue(2, $post_id);
+
+                            $query_link_anexo->execute();
+                        }
+                        echo "<br> Link para anexo : {$post_id}_{$titulo_anexo}.{$fileext} em post: {$post_id}<br>";
                     }
                 }
             }
 
-//            $query = $conDestino->prepare("INSERT INTO {$prefixo_tabela}posts
-//                (ID,
-//                post_author,
-//                post_content,
-//                post_title,
-//                post_excerpt,
-//                post_status,
-//                comment_status,
-//                ping_status,
-//                post_password,
-//                post_name,
-//                to_ping,
-//                pinged,
-//                post_content_filtered,
-//                post_parent,
-//                guid,
-//                menu_order,
-//                post_type,
-//                post_mime_type,
-//                comment_count)
-//                VALUES
-//                (null,1,?,?,'','publish','closed','closed','',?,'','','',0,'',0,'page','',0)");
-//
-//            $query->bindValue(1, $texto);
-//            $query->bindValue(2, $titulo);
-//            $query->bindValue(3, $slug);
-//
-//            $query->execute();
-//
-//            $post_id = $conDestino->lastInsertId();
-//
-//            if ($post_id <= 0) {
-//                echo "falha ao inserir post na linha " . $i;
-//                throw new Exception("Erro veio!");
-//            }
+            if (file_exists("antigo/" . $midia) && $midia != "") {
+                $arquivo_move_capa = "novo/{$relacao_pasta}{$post_id}_capa_{$titulo_capa}.{$ext_file}";
 
-            $arquivo_move_capa = "novo/{$relacao_pasta}{$post_id}_capa_{$titulo_capa}.{$ext_file}";
-
-            if (file_exists($arquivo_move_capa)) {
-                $conta = 1;
-                while (file_exists($arquivo_move_capa)) {
-                    $titulo_capa = md5($titulo_capa . $conta);
-                    $arquivo_move_capa = "novo/{$relacao_pasta}{$post_id}_capa_{$titulo_capa}.{$ext_file}";
-                    $conta++;
+                if (file_exists($arquivo_move_capa)) {
+                    $conta = 1;
+                    while (file_exists($arquivo_move_capa)) {
+                        $titulo_capa = md5($titulo_capa . $conta);
+                        $arquivo_move_capa = "novo/{$relacao_pasta}{$post_id}_capa_{$titulo_capa}.{$ext_file}";
+                        $conta++;
+                    }
+                }
+                if(copy("antigo/{$midia}", $arquivo_move_capa)){
+                    $contador_capa++;
                 }
             }
+            echo "Página {$post_id} : SUCESSO!" . "<br>";
 
-//            copy("antigo/{$midia}", $arquivo_move_capa);
-            echo "Notícia {$post_id} : SUCESSO!" . "<br>";
+            $query_galerias = $conOrigem->prepare("
+        SELECT
+            i.foto
+        FROM
+            institucional_fotos i
+        WHERE cod_institucional = {$id}"
+            );
 
-//            $query_galerias = $conOrigem->prepare("
-//        SELECT
-//            n.foto,
-//            (SELECT nome from bancoimagens b where b.foto = n.foto) as titulo_foto_galeria
-//        FROM
-//            noticias_fotos n
-//        WHERE cod_noticias = {$id}"
-//            );
-//
-//            $query_galerias->execute();
-//
-//            $result_galerias = $query_galerias->fetchAll(PDO::FETCH_ASSOC);
+            $query_galerias->execute();
+
+            $result_galerias = $query_galerias->fetchAll(PDO::FETCH_ASSOC);
 
             if (count($result_galerias) > 0) {
                 $cont = 0;
                 foreach ($result_galerias as $idx => $val) {
                     $contador++;
                     $midia_galeria = $val['foto'];
-                    $titulo_foto_galeria = md5(removeAcentos($val['titulo_foto_galeria'], "-"));
+                    $titulo_foto_galeria = md5(removeAcentos($val['foto'], "-"));
                     $fileInfo = new SplFileInfo("antigo/{$midia_galeria}");
                     $ext_file = $fileInfo->getExtension();
 
@@ -224,9 +251,14 @@ try {
         }
     }
 
+    echo "<br><br><br><pre>";
+
     echo "{$contador} mídias migradas <br>";
     echo "{$contadorNoticias} páginas migradas <br>";
+    echo "{$contador_anexos} anexos migrados <br>";
+    echo "{$contador_capa} capas migradas <br>";
 
+    echo "</pre>";
 
     $conDestino->commit();
 
