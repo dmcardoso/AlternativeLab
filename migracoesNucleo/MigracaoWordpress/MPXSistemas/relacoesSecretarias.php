@@ -29,7 +29,7 @@ const SITE = "http://192.168.254.222/NucleoWeb/wordpress/";
 const ARQUIVOS = SITE . "wp-content/uploads/";
 
 //ALTERAR ID PARA SELECIONAR AS MÍDIAS REFERENTES À MIGRAÇÃO
-const ID = 2;
+const ID = 167;
 
 //Alterar se o prefixo das tabelas for diferente
 $prefixo_tabela = "wp_";
@@ -47,7 +47,6 @@ try {
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
 
         $contador = 0;
-        $galerias = [];
 
 //        echo "<pre>";
 //        print_r($result);
@@ -87,30 +86,19 @@ try {
 //                print_r($result_post);
 
                     if (isset($result_post[0])) {
-                        if (array_key_exists($post_id, $galerias) && $type_midia == "galeria") {
-                            $galerias[$post_id][] = $result_post[0]['ID'];
-                        } else if (!array_key_exists($post_id, $galerias) && $type_midia == "galeria") {
-                            $galerias[$post_id][] = $result_post[0]['ID'];
-                        }
-
                         $post_meta_id = $result_post[0]['ID'];
 
                         if ($type_midia == "capa") {
-                            $type_page_query = $conDestino->prepare("INSERT INTO {$prefixo_tabela}postmeta(meta_id, post_id, meta_key, meta_value) values(null, ?,'_wp_page_template', 'page-foto-topo.php')");
-                            $type_page_query->bindValue(1, $post_id);
-                            $type_page_query->execute();
-                            echo "Tipo de página para institucional: {$post_id} <br>";
-
-                            $foto_campo_query = $conDestino->prepare("INSERT INTO {$prefixo_tabela}postmeta(meta_id, post_id, meta_key, meta_value) values(null, ?,'_foto', 'field_5b5ece16fa778')");
+                            $foto_campo_query = $conDestino->prepare("INSERT INTO {$prefixo_tabela}postmeta(meta_id, post_id, meta_key, meta_value) values(null, ?,'_imagem', 'field_5b5ec85ec844e')");
                             $foto_campo_query->bindValue(1, $post_id);
                             $foto_campo_query->execute();
-                            echo "Campo foto para institucional: {$post_id} <br>";
+                            echo "Campo foto para secretaria: {$post_id} <br>";
 
-                            $valor_campo_foto_query = $conDestino->prepare("INSERT INTO {$prefixo_tabela}postmeta(meta_id, post_id, meta_key, meta_value) values(null, ?,'foto', ?)");
+                            $valor_campo_foto_query = $conDestino->prepare("INSERT INTO {$prefixo_tabela}postmeta(meta_id, post_id, meta_key, meta_value) values(null, ?,'imagem', ?)");
                             $valor_campo_foto_query->bindValue(1, $post_id);
                             $valor_campo_foto_query->bindValue(2, $post_meta_id);
                             $valor_campo_foto_query->execute();
-                            echo "Valor campo foto para institucional: {$post_id} <br>";
+                            echo "Valor campo foto para secretaria: {$post_id} <br>";
                         }
                     }
                 }
@@ -118,28 +106,10 @@ try {
         }
     }
 
-    if (count($galerias) > 0) {
-        $contaGaleria = 0;
-        foreach ($galerias as $i => $v) {
-            $contaGaleria++;
-            $ids = implode($v, ",");
-            $galeria = '[gallery link="file" ids="' . $ids . '"]';
-
-            $query_relacao_post_capa = $conDestino->prepare("update {$prefixo_tabela}posts set post_content = concat(post_content, ?) where id = ?");
-
-            $query_relacao_post_capa->bindValue(1, $galeria);
-            $query_relacao_post_capa->bindValue(2, $i);
-
-            $query_relacao_post_capa->execute();
-
-            echo "Galeria inserida em página {$i} <br>";
-        }
-    }
 
     echo "<pre>";
 //    print_r($galerias);
-    echo "Galerias: " . count($galerias) . "<br>";
-    echo "Relações: " . $contador . "<br>" . "Galerias inseridas: " . $contaGaleria;
+    echo "Relações: " . $contador . "<br>";
 
     $conDestino->commit();
 
