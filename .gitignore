@@ -39,4 +39,5 @@ atlassian-ide-plugin.xml
 /ScriptsPHP/GoogleDriveAPI/vendor/
 /migracoesNucleo/MigracaoWordpress/MPXSistemas/videos_thumb/
 /node_modules/
-/package-lock.json
+/ScriptsJS/WebModerno/cap_node/aula07/funcionarios/node_modules/
+/ScriptsJS/WebModerno/cap_node/aula06/funcionarios/node_modules/

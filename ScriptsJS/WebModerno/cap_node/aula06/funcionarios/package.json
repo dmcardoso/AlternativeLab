@@ -1,0 +1,22 @@
+{
+  "name": "funcionarios",
+  "version": "1.0.0",
+  "description": "Teste do npm init",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "sdsdgdfasdf",
+    "asdfa",
+    "asdf",
+    "asd",
+    "fasd",
+    "f"
+  ],
+  "author": "Daniel Moreira",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "0.17.1"
+  }
+}
