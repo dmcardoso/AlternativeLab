@@ -34,8 +34,8 @@ atlassian-ide-plugin.xml
 .idea/httpRequests
 /migracoesNucleo/MigracaoWordpress/NucleoADM/antigo/
 /migracoesNucleo/MigracaoWordpress/NucleoADM/novo/
-/migracoesNucleo/MigracaoWordpress/MPXSistemas/novo/
-/migracoesNucleo/MigracaoWordpress/MPXSistemas/antigo/
+/migracoesNucleo/**/novo/
+/migracoesNucleo/**/antigo/
 /ScriptsPHP/GoogleDriveAPI/vendor/
 /migracoesNucleo/MigracaoWordpress/MPXSistemas/videos_thumb/
 /node_modules/

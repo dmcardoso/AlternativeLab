@@ -12,24 +12,24 @@ mb_internal_encoding("UTF-8");
 
 set_time_limit(5 * 60);
 
-$conOrigem = new PDO("mysql:dbname=muricilandia;host=localhost", "root", "1234", $options = array(
+$conOrigem = new PDO("mysql:dbname=mpx_arraias;host=localhost", "root", "1234", $options = array(
     PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
     PDO::ATTR_PERSISTENT => false
 ));
 
-$conDestino = new PDO("mysql:dbname=nucleoweb;host=localhost", "root", "1234", $options = array(
+$conDestino = new PDO("mysql:dbname=padrao_arraias;host=localhost", "root", "1234", $options = array(
     PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
     PDO::ATTR_PERSISTENT => false
 ));
 
 // ALTERAR PARA USAR NO CAMPO GUID QUE É O DOMÍNIO DO SITE
-const SITE = "http://muricilandia.to.gov.br/";
+const SITE = "http://www.arraias.to.gov.br/";
 const SITE_UPLOADS = SITE . "wp-content/uploads/";
 
 //Alterar se o prefixo das tabelas for diferente
-$prefixo_tabela = "wp_";
+$prefixo_tabela = "ng_";
 
 $ano_atual = date("Y");
 $mes_atual = date("m");
@@ -41,18 +41,13 @@ try {
 
     $query = $conOrigem->prepare("
         SELECT
-	s.codigo as id,
-	s.secretaria titulo,
-	sc.email as email,
-	sc.nome as nome,
-	scc.foto as foto,
-	scc.texto as texto
-FROM
-	secretarias s
-	LEFT JOIN secretarias_contato sc ON s.codigo = sc.cod_secretaria
-	LEFT JOIN secretarias_secretario scc ON s.codigo = scc.cod_secretaria 
-ORDER BY
-	s.codigo"
+            i.codigo as id,
+            i.titulo,
+            i.texto,
+            i.foto,
+            (SELECT nome from bancoimagens b where b.foto = i.foto) as titulo_capa
+        FROM
+            institucional i"
     );
 
     $bool = $query->execute();
@@ -68,12 +63,10 @@ ORDER BY
             $contadorNoticias++;
             $id = $v['id'];
             $midia = $v['foto'];
-            $email = $v['email'];
-            $nome = $v['nome'];
             $texto = remove_emoji($v['texto']);
             $titulo = $v['titulo'];
 //            $data = ($v['data'] != "" || $v['data'] != null) ? $v['data'] : null;
-            $titulo_capa = (isset($v['titulo_capa']) && ($v['titulo_capa'] != null || $v['titulo_capa'] != "")) ? md5(removeAcentos($v['titulo_capa'], "-")) : md5(removeAcentos($midia, "-"));
+            $titulo_capa = ($v['titulo_capa'] != null || $v['titulo_capa'] != "") ? md5(removeAcentos($v['titulo_capa'], "-")) : md5(removeAcentos($midia, "-"));
 
             if ($midia != "") {
                 $nome_midia = explode("/", $midia)[1];
@@ -145,7 +138,7 @@ ORDER BY
             }
 
             $query_anexos_com_link = $conOrigem->prepare(
-                "SELECT * FROM secretarias_downloads where cod_secretaria = {$id}"
+                "SELECT * FROM institucional_downloads where cod_institucional = {$id}"
             );
 
             $bool_anexos = $query_anexos_com_link->execute();
@@ -203,7 +196,6 @@ ORDER BY
                 }
             }
 
-
             if (file_exists("antigo/" . $midia) && $midia != "") {
                 $arquivo_move_capa = "novo/{$relacao_pasta}{$post_id}_capa_{$titulo_capa}.{$ext_file}";
 
@@ -219,33 +211,43 @@ ORDER BY
                     $contador_capa++;
                 }
             }
-
-            $query_dados = $conDestino->prepare("INSERT into {$prefixo_tabela}postmeta(post_id, meta_key, meta_value) values (?,?,?),(?,?,?),(?,?,?),(?,?,?),(?,?,?)");
-
-            $query_dados->bindValue(1, $post_id);
-            $query_dados->bindValue(2, '_wp_page_template');
-            $query_dados->bindValue(3, 'page-perfil.php');
-
-            $query_dados->bindValue(4, $post_id);
-            $query_dados->bindValue(5, 'nome');
-            $query_dados->bindValue(6, $nome);
-
-            $query_dados->bindValue(7, $post_id);
-            $query_dados->bindValue(8, '_nome');
-            $query_dados->bindValue(9, 'field_5b5ec871c844f');
-
-            $query_dados->bindValue(10, $post_id);
-            $query_dados->bindValue(11, 'email');
-            $query_dados->bindValue(12, $email);
-
-            $query_dados->bindValue(13, $post_id);
-            $query_dados->bindValue(14, '_email');
-            $query_dados->bindValue(15, 'field_5b5ec882c8451');
-
-            $query_dados->execute();
-
             echo "Página {$post_id} : SUCESSO!" . "<br>";
 
+            $query_galerias = $conOrigem->prepare("
+        SELECT
+            i.foto
+        FROM
+            institucional_fotos i
+        WHERE cod_institucional = {$id}"
+            );
+
+            $query_galerias->execute();
+
+            $result_galerias = $query_galerias->fetchAll(PDO::FETCH_ASSOC);
+
+            if (count($result_galerias) > 0) {
+                $cont = 0;
+                foreach ($result_galerias as $idx => $val) {
+                    $contador++;
+                    $midia_galeria = $val['foto'];
+                    $titulo_foto_galeria = md5(removeAcentos($val['foto'], "-"));
+                    $fileInfo = new SplFileInfo("antigo/{$midia_galeria}");
+                    $ext_file = $fileInfo->getExtension();
+
+                    $arquivo_move = "novo/{$relacao_pasta}{$post_id}_galeria_{$titulo_foto_galeria}.{$ext_file}";
+                    if (file_exists($arquivo_move)) {
+                        $conta = 0;
+                        while (file_exists($arquivo_move)) {
+                            $conta++;
+                            $titulo_foto_galeria = md5($titulo_foto_galeria . $conta);
+                            $arquivo_move = "novo/{$relacao_pasta}{$post_id}_galeria_{$titulo_foto_galeria}.{$ext_file}";
+                        }
+                    }
+                    copy("antigo/{$midia_galeria}", $arquivo_move);
+                    $cont++;
+                    echo "Mídia {$cont}: {$arquivo_move}. SUCESSO! <br>";
+                }
+            }
         }
     }
 

@@ -12,24 +12,24 @@ mb_internal_encoding("UTF-8");
 
 set_time_limit(5 * 60);
 
-$conOrigem = new PDO("mysql:dbname=muricilandia;host=localhost", "root", "1234", $options = array(
+$conOrigem = new PDO("mysql:dbname=mpx_arraias;host=localhost", "root", "1234", $options = array(
     PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
     PDO::ATTR_PERSISTENT => false
 ));
 
-$conDestino = new PDO("mysql:dbname=nucleoweb;host=localhost", "root", "1234", $options = array(
+$conDestino = new PDO("mysql:dbname=padrao_arraias;host=localhost", "root", "1234", $options = array(
     PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
     PDO::ATTR_PERSISTENT => false
 ));
 
 // ALTERAR PARA USAR NO CAMPO GUID QUE É O DOMÍNIO DO SITE
-const SITE = "http://muricilandia.to.gov.br/";
+const SITE = "http://arraias.to.gov.br/";
 const SITE_UPLOADS = SITE . "wp-content/uploads/";
 
 //Alterar se o prefixo das tabelas for diferente
-$prefixo_tabela = "wp_";
+$prefixo_tabela = "ng_";
 
 $ano_atual = date("Y");
 $mes_atual = date("m");
