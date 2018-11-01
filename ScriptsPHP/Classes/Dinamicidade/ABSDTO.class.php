@@ -50,6 +50,8 @@ abstract class ABSDTO {
                     throw new Exception("Atributo {$attr} inexistente");
                 }
             }
+        } elseif (method_exists($this, $name)) {
+            return $this->$name($arguments);
         } else {
             throw new Exception("Método {$name} inválido");
         }
@@ -65,17 +67,17 @@ abstract class ABSDTO {
     }
 
     public function getProperties() {
-        if(count($this->attr) > 0){
+        if (count($this->attr) > 0) {
             return $this->attr;
-        }else{
+        } else {
             throw new Exception("Objeto não possui atributos");
         }
     }
 
     public function clear() {
-        if(count($this->attr) > 0){
+        if (count($this->attr) > 0) {
             unset($this->attr);
-        }else{
+        } else {
             throw new Exception("Objeto não possui atributos");
         }
     }
