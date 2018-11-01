@@ -77,6 +77,7 @@ abstract class ABSDTO {
     public function clear() {
         if (count($this->attr) > 0) {
             unset($this->attr);
+            return true;
         } else {
             throw new Exception("Objeto não possui atributos");
         }
