@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8">
+		<title>Um pouco de css</title>
+		<link rel="stylesheet" href="./umPoucoDeCss.css"/>
+		<style>
+			h1 {
+				font-size: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Css</h1><br>
+		<span id="textoPrincipal">Texto 1</span><br>
+		<span class="fundoVermelho negrito">Texto 2</span><br>
+		<span class="fundoVermelho" wm-atrib>Texto 3</span>
+		<script>
+            //Retorna um
+            console.log(document.querySelector('.fundoVermelho'));
+            //Retorna todos que tem a classe
+            console.log(document.querySelectorAll('.fundoVermelho'));
+            //Elementos html que tem o atributo
+            console.log(document.querySelector('[wm-atrib]'));
+		</script>
+	</body>
+</html>

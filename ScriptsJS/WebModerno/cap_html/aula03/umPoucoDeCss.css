@@ -1,0 +1,15 @@
+.fundoVermelho{
+    background-color: #c00;
+}
+
+.negrito{
+    font-weight: bolder;
+}
+
+#textoPrincipal{
+    font-size: 40px;
+    font-weight: bolder;
+    color: #fff;
+    padding: 10px;
+    background-color: #444;
+}
