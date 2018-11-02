@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>Exerxícios html</title>
+        <style>
+            #conteudo{
+                padding: 30px 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <header><h1>Exercícios html</h1></header>
+        <nav>
+            | <a href wm-nav="./aula04/teste.html">00 - Teste</a> |
+            <a href wm-nav="./aula06/texto1.html">01 - Texto 1</a> |
+            <a href wm-nav="./aula07/texto2.html">02 - Texto 2</a> |
+        </nav>
+        <br>
+        <section id="conteudo">
+
+        </section>
+
+        <footer>
+            Curso de Web Moderno
+        </footer>
+        <script>
+            document.querySelectorAll('[wm-nav]').forEach(link => {
+                link.onclick = function (e) {
+                    e.preventDefault();
+
+                    const conteudo = document.querySelector('#conteudo');
+                    fetch(link.getAttribute('wm-nav')).then(resp => resp.text()).then(html => conteudo.innerHTML = html);
+                }
+            });
+        </script>
+    </body>
+</html>
