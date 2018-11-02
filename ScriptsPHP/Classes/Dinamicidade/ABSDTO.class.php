@@ -38,17 +38,9 @@ abstract class ABSDTO {
 
         if (method_exists($this, $method)) {
             if ($method == "set") {
-                if (!in_array($attr, array_keys($this->attr))) {
-                    return $this->$method($attr, $arguments[0]);
-                } else {
-                    throw new Exception("Atributo {$attr} já existe");
-                }
+                return $this->$method($this->camelToAttr($attr), $arguments[0]);
             } elseif ($method == "get") {
-                if (in_array($attr, array_keys($this->attr))) {
-                    return $this->$method($attr);
-                } else {
-                    throw new Exception("Atributo {$attr} inexistente");
-                }
+                return $this->$method($this->camelToAttr($attr));
             }
         } elseif (method_exists($this, $name)) {
             return $this->$name($arguments);
@@ -62,7 +54,7 @@ abstract class ABSDTO {
         throw new Exception("Atributo {$name} privado deve ser acessado por método get");
     }
 
-    public function __set($name) {
+    public function __set($name, $attr) {
         throw new Exception("Impossível criar atributo {$name}, utilize o método set");
     }
 
@@ -81,6 +73,38 @@ abstract class ABSDTO {
         } else {
             throw new Exception("Objeto não possui atributos");
         }
+    }
+
+    public function camelToStr($str) {
+        $matches = "";
+        preg_match_all('/((?:^|[A-Z])[a-z]+)/', $str, $matches);
+        if (isset($matches[1]) && count($matches[1]) > 0) {
+            return ucfirst(strtolower(implode(" ", $matches[1])));
+        } else {
+            throw new Exception("Frase informada não é Camel Case");
+        }
+    }
+
+    public function camelToAttr($str) {
+        $matches = "";
+        preg_match_all('/((?:^|[A-Z])[a-z]+)/', $str, $matches);
+        if (isset($matches[1]) && count($matches[1]) > 0) {
+            return strtolower(implode("_", $matches[1]));
+        } else {
+            throw new Exception("Frase informada não é Camel Case");
+        }
+    }
+
+    public function attrToCamel($attr) {
+        $string = "";
+        foreach (explode("_", $attr) as $i => $v) {
+            if ($i == 0) {
+                $string .= $v;
+            } else {
+                $string .= ucfirst($v);
+            }
+        }
+        return $string;
     }
 
 }

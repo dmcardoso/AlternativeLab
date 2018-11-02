@@ -11,15 +11,34 @@ require 'Dinamicidade.class.php';
 $dinamic = new Dinamicidade();
 
 $dinamic->setValor(15);
-$dinamic->setNome("Daniek");
-$dinamic->setSobreNome("Moreira");
+$dinamic->setNome("Daniel");
+$dinamic->setSobreNomeDoPai("Moreira");
+
+$dinamic2 = new Dinamicidade();
+
+$dinamic2->setAvo("Augusto");
+$dinamic->setPai($dinamic2);
+
+$dinamic3 = new Dinamicidade();
+$dinamic3->setFeijao('arroz');
+$dinamic2->setRefeicao($dinamic3);
+
 
 echo $dinamic->getNome() . "<br>";
 echo $dinamic->getValor() . "<br>";
-echo $dinamic->getSobreNome();
+echo $dinamic->getSobreNomeDoPai() . "<br>";
+echo $dinamic->getPai()->getAvo() . "<br>";
+
+
+echo $dinamic->camelToStr("meuNome") ."<br>";
+echo $dinamic->camelToAttr("meuNome") . "<br>";
+echo $dinamic->attrToCamel("meu_nome");
+echo "<pre>";
+print_r($dinamic);
+
 
 //echo $dinamic->nome;
-$valor = $dinamic->getValor();
+//$valor = $dinamic->getValor();
 
 //echo $valor . "<<<";
 
