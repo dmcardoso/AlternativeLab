@@ -44,4 +44,16 @@ print_r($dinamic);
 
 //print_r($dinamic);
 
+$dados = [
+    "nome" => "Daniel",
+    "sobre_nome" => "Moreira Cardoso",
+    "data_nascimento" => "06/01/1999"
+];
+$final = new Dinamicidade($dados);
+
+print_r($final);
+
+echo $final->getNome() . "<br>";
+echo $final->getSobreNome() . "<br>";
+echo $final->getDataNascimento() . "<br>";
 ?>

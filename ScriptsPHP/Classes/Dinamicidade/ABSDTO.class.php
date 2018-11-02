@@ -10,7 +10,7 @@ abstract class ABSDTO {
 
     private $attr = [];
 
-    private function set($property = null, $value = null) {
+    protected function set($property = null, $value = null) {
         if (isset($property, $value) && $property != null && $value != null) {
             if (!in_array($property, array_keys($this->attr))) {
                 $this->attr[$property] = $value;
@@ -23,7 +23,7 @@ abstract class ABSDTO {
         }
     }
 
-    private function get($name) {
+    protected function get($name) {
         if (in_array($name, array_keys($this->attr))) {
             return $this->attr[$name];
         } else {
@@ -95,11 +95,16 @@ abstract class ABSDTO {
         }
     }
 
-    public function attrToCamel($attr) {
+    public function attrToCamel($attr, $method = false) {
         $string = "";
         foreach (explode("_", $attr) as $i => $v) {
             if ($i == 0) {
-                $string .= $v;
+                if ($method) {
+                    $string .= $method;
+                    $string .= ucfirst($v);
+                } else {
+                    $string .= $v;
+                }
             } else {
                 $string .= ucfirst($v);
             }
