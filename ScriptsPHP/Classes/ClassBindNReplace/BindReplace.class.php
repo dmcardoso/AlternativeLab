@@ -88,7 +88,7 @@ class BindReplace {
             $res['id'] = $insert['id'];
             $res['data_db'] = date("Y-m-d H:i:00", strtotime($insert['data']));
             $res['data'] = $this->tratarData($insert['data']);
-            $res['mensagem'] = $this->bindReplace($insert['mensagem'], $colaborador_nome);
+            $res['mensagem'] = $this->BindReplace.class($insert['mensagem'], $colaborador_nome);
             $res['protocolo'] = $protocolo;
             return $res;
         } else {
@@ -133,7 +133,7 @@ class BindReplace {
             $res['id'] = $insert['id'];
             $res['data_db'] = date("Y-m-d H:i:00", strtotime($insert['data']));
             $res['data'] = $this->tratarData($insert['data']);
-            $res['mensagem'] = $this->bindReplace($insert['mensagem'], $colaborador_nome);
+            $res['mensagem'] = $this->BindReplace.class($insert['mensagem'], $colaborador_nome);
             $res['protocolo'] = $protocolo;
             return $res;
         } else {
@@ -228,7 +228,7 @@ class BindReplace {
      * @return string| null String caso encontre binds a serem substituídos, independente da quantidade. Ou null caso não haja nenhum<br>
      * valor a ser substituído.
      */
-    public function bindReplace($msg, $values, $bind = null) {
+    public function BindReplace($msg, $values, $bind = null) {
         $binds = $bind ?? $this->pegarBinds($msg);
         $originais = [];
 
