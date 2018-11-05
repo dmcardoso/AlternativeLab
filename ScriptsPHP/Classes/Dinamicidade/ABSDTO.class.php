@@ -38,9 +38,9 @@ abstract class ABSDTO {
 
         if (method_exists($this, $method)) {
             if ($method == "set") {
-                return $this->$method($this->camelToAttr($attr), $arguments[0]);
+                return $this->$method(ResFunctions::camelToAttr($attr), $arguments[0]);
             } elseif ($method == "get") {
-                return $this->$method($this->camelToAttr($attr));
+                return $this->$method(ResFunctions::camelToAttr($attr));
             }
         } elseif (method_exists($this, $name)) {
             return $this->$name($arguments);
@@ -73,43 +73,6 @@ abstract class ABSDTO {
         } else {
             throw new Exception("Objeto não possui atributos");
         }
-    }
-
-    public function camelToStr($str) {
-        $matches = "";
-        preg_match_all('/((?:^|[A-Z])[a-z]+)/', $str, $matches);
-        if (isset($matches[1]) && count($matches[1]) > 0) {
-            return ucfirst(strtolower(implode(" ", $matches[1])));
-        } else {
-            throw new Exception("Frase informada não é Camel Case");
-        }
-    }
-
-    public function camelToAttr($str) {
-        $matches = "";
-        preg_match_all('/((?:^|[A-Z])[a-z]+)/', $str, $matches);
-        if (isset($matches[1]) && count($matches[1]) > 0) {
-            return strtolower(implode("_", $matches[1]));
-        } else {
-            throw new Exception("Frase informada não é Camel Case");
-        }
-    }
-
-    public function attrToCamel($attr, $method = false) {
-        $string = "";
-        foreach (explode("_", $attr) as $i => $v) {
-            if ($i == 0) {
-                if ($method) {
-                    $string .= $method;
-                    $string .= ucfirst($v);
-                } else {
-                    $string .= $v;
-                }
-            } else {
-                $string .= ucfirst($v);
-            }
-        }
-        return $string;
     }
 
 }
