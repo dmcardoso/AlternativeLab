@@ -15,12 +15,12 @@ class Router {
     public function __construct($atributes = []) {
         if (isset($atributes['namespace'], $atributes['file'])) {
             $this->path($atributes['namespace'], $atributes['file']);
-        }else{
+        } else {
             throw new Exception("Namespace e Classe não definidos.");
         }
         if (isset($atributes['method'])) {
             $this->method($atributes['method']);
-        }else{
+        } else {
             throw new Exception("Método não definido.");
         }
     }
@@ -43,6 +43,27 @@ class Router {
 
     public function getMethod() {
         return $this->path['method'];
+    }
+
+    public function classExists() {
+        return class_exists($this->path['class']);
+    }
+
+    public function methodExists($object) {
+        return method_exists($object, $this->path['method']);
+    }
+
+    public function methodAndClassExists() {
+        if ($this->classExists()) {
+            $object = new $this->getPathClass();
+            if (method_exists($object, $this->path['method'])) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            throw new Exception("Classe {$this->getPathClass()} não existe");
+        }
     }
 
 }
