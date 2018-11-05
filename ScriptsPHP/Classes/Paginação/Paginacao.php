@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Core;
+
+use Exception;
+
 /**
  * Description of Paginacao
  *
@@ -8,93 +11,52 @@ namespace App\Core;
  */
 class Paginacao {
 
-    private $paginaAtual, $quantidadeDePaginas, $inicioPaginacao;
-    private $fimPaginacao, $quantidadeASerExibida, $quantidadeRegistrosPorPagina;
-    private $quantidadeRegistros, $registroInicial;
+    private $atributes = [];
 
-    function __construct($quantidadeRegistros, $quantidadePorPagina = 10) {
-        $this->quantidadeRegistros = $quantidadeRegistros;
-        $this->setPaginaAtual();
-        $this->setQuantidadePorPagina($quantidadePorPagina);
-        $this->setQuantidadeASerExibida();
-        $this->setQuantidadeDePaginas();
-        $this->setRegistroInicial();
-        $this->renderizaPaginacao();
-    }
-
-    //Métodos para setar atributos necessários
-    function setQuantidadeExibicao($quantidadeASerExibida) {
-        $this->quantidadeASerExibida = $quantidadeASerExibida;
-    }
-
-    function setQuantidadeASerExibida() {
-        if ($this->quantidadeASerExibida) {
-            $this->quantidadeASerExibida = $this->quantidadeASerExibida;
+    function __construct($atributes = []) {
+        if (is_array($atributes)) {
+            $this->atributes['qtd_registros'] = $atributes['qtd_registros'] ?? null;
+            $this->atributes['pag_atual'] = $atributes['pag_atual'] ?? 1;
+            $this->atributes['qtd_por_pagina'] = $atributes['qtd_por_pagina'] ?? 10;
+            $this->atributes['qtd_exibicao'] = $atributes['qtd_exibicao'] ?? 3;
+            $this->atributes['total_paginas'] = $this->getTotalPaginas($atributes['qtd_registros'], $atributes['qtd_por_pagina']);
+            $this->atributes['registro_inicial'] = $this->getBegin($atributes['pag_atual'], $atributes['qtd_por_pagina']);
+            $this->render();
         } else {
-            $this->quantidadeASerExibida = 3;
+            throw new Exception("Atributos para a classe de paginação devem ser um array");
         }
     }
 
-    public function setQuantidadeDePaginas() {
-        $this->quantidadeDePaginas = ceil($this->quantidadeRegistros / $this->quantidadeRegistrosPorPagina);
-    }
-
-    public function setQuantidadePorPagina($quantidadePorPagina) {
-        if ($_GET['qt']) {
-            $this->quantidadeRegistrosPorPagina = $_GET['qt'];
-        } else {
-            $this->quantidadeRegistrosPorPagina = $quantidadePorPagina;
-        }
-    }
-
-    function setQuantidadeRegistros($quantidadeRegistros) {
-        $this->quantidadeRegistros = $quantidadeRegistros;
-    }
-
-    public function setPaginaAtual() {
-        if ($_GET['pg']) {
-            $this->paginaAtual = $_GET['pg'];
-        } else {
-            $this->paginaAtual = 1;
-        }
+    public function getTotalPaginas($registros, $qtd_por_pagina) {
+        return ceil($registros / $qtd_por_pagina);
     }
 
     //Registro do banco o qual será o inicial
-    public function setRegistroInicial() {
-        if ($this->paginaAtual == 1) {
-            $this->registroInicial = 0;
+    public function getBegin($pag_atual, $qtd_por_pagina) {
+        if ($pag_atual == 1) {
+            return 0;
         } else {
-            $this->registroInicial = (($this->paginaAtual * $this->quantidadeRegistrosPorPagina) - ($this->quantidadeRegistrosPorPagina));
+            return (($pag_atual * $qtd_por_pagina) - ($qtd_por_pagina));
         }
     }
 
-    //Se precisar
-    public function registroFinal($registroInicial, $quantidadePorPagina, $pagina) {
-        if ($pagina == 1) {
-            return $quantidadePorPagina - 1;
-        } else {
-            return $registroInicial + $quantidadePorPagina - 1;
-        }
-    }
-
-
-    public function renderizaPaginacao() {
-        if ($this->quantidadeDePaginas > $this->quantidadeASerExibida) {
-            if ($this->paginaAtual > $this->teto($this->quantidadeASerExibida)) {
-                if ($this->paginaAtual > $this->quantidadeDePaginas - $this->teto($this->quantidadeASerExibida)) {
-                    $this->inicioPaginacao = $this->quantidadeDePaginas - ($this->quantidadeASerExibida - 1);
-                    $this->fimPaginacao = $this->quantidadeDePaginas;
+    public function render() {
+        if ($this->atributes['total_paginas'] > $this->atributes['qtd_exibicao']) {
+            if ($this->atributes['pag_atual'] > $this->teto($this->atributes['qtd_exibicao'])) {
+                if ($this->atributes['pag_atual'] > $this->atributes['total_paginas'] - $this->teto($this->atributes['qtd_exibicao'])) {
+                    $this->atributes['inicio_paginacao'] = $this->atributes['total_paginas'] - ($this->atributes['qtd_exibicao'] - 1);
+                    $this->atributes['fim_paginacao'] = $this->atributes['total_paginas'];
                 } else {
-                    $this->inicioPaginacao = $this->paginaAtual - ($this->teto($this->quantidadeASerExibida) - 1);
-                    $this->fimPaginacao = $this->paginaAtual + $this->chao($this->quantidadeASerExibida);
+                    $this->atributes['inicio_paginacao'] = $this->atributes['pag_atual'] - ($this->teto($this->atributes['qtd_exibicao']) - 1);
+                    $this->atributes['fim_paginacao'] = $this->atributes['pag_atual'] + $this->chao($this->atributes['qtd_exibicao']);
                 }
             } else {
-                $this->inicioPaginacao = 1;
-                $this->fimPaginacao = $this->quantidadeASerExibida;
+                $this->atributes['inicio_paginacao'] = 1;
+                $this->atributes['fim_paginacao'] = $this->atributes['qtd_exibicao'];
             }
         } else {
-            $this->inicioPaginacao = 1;
-            $this->fimPaginacao = $this->quantidadeDePaginas;
+            $this->atributes['inicio_paginacao'] = 1;
+            $this->atributes['fim_paginacao'] = $this->atributes['total_paginas'];
         }
     }
 
@@ -108,45 +70,16 @@ class Paginacao {
         return floor($quantidade / 2);
     }
 
-    //Se Precisar
-    public function configuraLista($lista, $registroInicial, $registroFinal) {
-        if ($lista) {
-            $novaLista = array();
-            for ($i = $lista[$registroInicial]; i <= $lista[$registroFinal]; $i++) {
-                array_push($novaLista, $lista[$i]);
-            }
-            var_dump($novaLista);
-            return $novaLista;
+    public function getProperties() {
+        return $this->atributes;
+    }
+
+    public function getProperty($property) {
+        if (in_array($property, array_keys($this->atributes))) {
+            return $this->atributes[$property];
+        }else{
+            throw new Exception("Atributo {$property} não existe na classe");
         }
-    }
-
-    //Métodos para retornar os registros
-    function getQuantidadeRegistros() {
-        return $this->quantidadeRegistros;
-    }
-
-    function getInicioPaginacao() {
-        return $this->inicioPaginacao;
-    }
-
-    function getFimPaginacao() {
-        return $this->fimPaginacao;
-    }
-
-    function getRegistroInicial() {
-        return $this->registroInicial;
-    }
-
-    function getQuantidadeDePaginas() {
-        return $this->quantidadeDePaginas;
-    }
-
-    function getPaginaAtual() {
-        return $this->paginaAtual;
-    }
-
-    function getQuantidadeRegistrosPorPagina() {
-        return $this->quantidadeRegistrosPorPagina;
     }
 }
 
