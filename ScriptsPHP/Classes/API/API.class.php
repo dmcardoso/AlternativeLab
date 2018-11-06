@@ -35,7 +35,7 @@ class API {
             if ($rt->methodAndClassExists()) {
                 return call_user_func_array([new $rt->getPathClass(), $rt->getMethod()], [$data]);
             } else {
-                return "Ação não encontrada";
+                return "Ação {$action} não encontrada em {$rt->getPathClass()}";
             }
 
         } catch (Exception $e) {
