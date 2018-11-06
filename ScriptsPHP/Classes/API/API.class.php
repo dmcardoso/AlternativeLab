@@ -1,10 +1,15 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: qualq
+ * User: Daniel Moreira
  * Date: 05/11/2018
  * Time: 16:49
  */
+
+namespace App\API;
+
+use App\Core\Router;
+use Exception;
 
 class API {
 
@@ -15,7 +20,7 @@ class API {
     public function render($data) {
         if (is_array($data) && count($data) > 0) {
             foreach ($data as $index => $value) {
-                if (isset($data['action'])) {
+                if (isset($value['action'])) {
                     $this->returns[$index] = $this->requestAPI($value['api'], $value['action'], $value);
                 } else {
                     $this->returns[$index] = "Nenhuma ação passsada para a API: {$value['api']} em {$index}";
@@ -33,9 +38,11 @@ class API {
             $rt = new Router(['namespace' => self::MODULE, 'file' => $api, 'method' => $action]);
 
             if ($rt->methodAndClassExists()) {
-                return call_user_func_array([new $rt->getPathClass(), $rt->getMethod()], [$data]);
+                $objetClass = $rt->getClassInstance();
+                unset($data['api'], $data['action']);
+                return call_user_func_array([new $objetClass(), $rt->getMethod()], [$data]);
             } else {
-                return "Ação {$action} não encontrada em {$rt->getPathClass()}";
+                return "Ação {$action} não encontrada em {$rt->getClassInstance()}";
             }
 
         } catch (Exception $e) {
@@ -44,6 +51,9 @@ class API {
     }
 
     protected function returnsAPI() {
+        if(count($this->returns) <= 1){
+            $this->returns = $this->returns[array_keys($this->returns)[0]];
+        }
         if (is_array($this->returns)) {
             return json_encode($this->returns);
         } else if (is_string($this->returns)) {

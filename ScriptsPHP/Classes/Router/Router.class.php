@@ -1,12 +1,16 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: qualq
+ * User: Daniel Moreira
  * Date: 05/11/2018
  * Time: 10:24
  */
 
-require "../Res/ResFunctions.class.php";
+namespace App\Core;
+
+use App\API\Essa;
+use App\Core\Res\ResFunctions;
+use Exception;
 
 class Router {
 
@@ -28,9 +32,10 @@ class Router {
     protected function path($namespace, $file) {
         $file = preg_replace('/[^a-zA-Z]/i', '', ucwords(strtolower($file)));
         $namespace_path = trim(str_replace('/', '\\', $namespace));
-        $file_path = trim(str_replace('/', '\\', "{$file}.class.php"));
+        $file_path = trim(str_replace('/', '\\', "{$file}"));
 
-        $this->path['class'] = $namespace_path . "\\" . $file_path;
+        $this->path['class'] = "\\". $namespace_path . "\\" . $file_path . ".php";
+        $this->path['instance'] = "\\". $namespace_path . "\\" . $file_path;
     }
 
     protected function method($method) {
@@ -41,12 +46,16 @@ class Router {
         return $this->path['class'];
     }
 
+    public function getClassInstance() {
+        return $this->path['instance'];
+    }
+
     public function getMethod() {
         return $this->path['method'];
     }
 
     public function classExists() {
-        return class_exists($this->path['class']);
+        return class_exists($this->path['instance']);
     }
 
     public function methodExists($object) {
@@ -55,14 +64,16 @@ class Router {
 
     public function methodAndClassExists() {
         if ($this->classExists()) {
-            $object = new $this->getPathClass();
+            $objectClass = $this->getClassInstance();
+            $object = new $objectClass();
+
             if (method_exists($object, $this->path['method'])) {
                 return true;
             } else {
                 return false;
             }
         } else {
-            throw new Exception("Classe {$this->getPathClass()} não existe");
+            throw new Exception("Classe {$this->getClassInstance()} não existe");
         }
     }
 
