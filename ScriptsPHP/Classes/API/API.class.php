@@ -13,11 +13,13 @@ class API {
     private $returns;
 
     public function render($data) {
-        if (is_array($data)) {
-            if (isset($data['action'])) {
-                $this->requestAPI($data['api'], $data['action'], $data);
-            } else {
-                throw new Exception("Nenhuma ação passsada para a API");
+        if (is_array($data) && count($data) > 0) {
+            foreach ($data as $index => $value) {
+                if (isset($data['action'])) {
+                    $this->returns[$index] = $this->requestAPI($value['api'], $value['action'], $value);
+                } else {
+                    $this->returns[$index] = "Nenhuma ação passsada para a API: {$value['api']} em {$index}";
+                }
             }
         } else {
             throw new Exception("Dados para API devem ser um array");
@@ -31,13 +33,13 @@ class API {
             $rt = new Router(['namespace' => self::MODULE, 'file' => $api, 'method' => $action]);
 
             if ($rt->methodAndClassExists()) {
-                $this->returns = call_user_func_array([new $rt->getPathClass(), $rt->getMethod()], [$data]);
+                return call_user_func_array([new $rt->getPathClass(), $rt->getMethod()], [$data]);
             } else {
-                $this->returns = "Ação não encontrada";
+                return "Ação não encontrada";
             }
 
         } catch (Exception $e) {
-            throw new Exception("Não foi possível carregar a API \n {$e}");
+            throw new Exception("Não foi possível carregar a API: {$e}");
         }
     }
 
