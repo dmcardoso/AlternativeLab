@@ -1,29 +1,73 @@
 <!DOCTYPE html>
 <html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Selecionar Elementos #04</title>
+		<link rel="stylesheet" href="css/estilo.css">
+	</head>
+	<body class="conteudo exercicio">
+		<div>
+			<p>Início</p>
+		</div>
+		<div>
+			<ul>
+				<li>Pedro</li>
+				<li>Ana</li>
+				<li>Bia</li>
+			</ul>
+		</div>
+		<div>
+			<p>Fim</p>
+		</div>
+		<script>
+			// Mudando o debug
+			function log(){
+			    console.log(this);
+			}
 
-<head>
-    <meta charset="UTF-8">
-    <title>Selecionar Elementos #04</title>
-    <link rel="stylesheet" href="css/estilo.css">
-</head>
+			// Adicionando para o prototype da API
+			HTMLCollection.prototype.log = log;
+			HTMLElement.prototype.log = log;
+			NodeList.prototype.log = log;
+			Node.prototype.log = log;
 
-<body class="conteudo exercicio">
-    <div>
-        <p>Início</p>
-    </div>
-    <div>
-        <ul>
-            <li>Pedro</li>
-            <li>Ana</li>
-            <li>Bia</li>
-        </ul>
-    </div>
-    <div>
-        <p>Fim</p>
-    </div>
-    <script>
-        // ...
-    </script>
-</body>
+			const lista = document.querySelector('div ul');
+			// parentNode é o pai do elemento
+			lista.parentNode.log();
 
+			// childNodes são os filhos do elemento
+			// Tem efeito colateral se tiver espaços no html
+			lista.childNodes.log();
+
+			// Primeiro elemento da lista
+			const primeiro = lista.firstChild;
+			primeiro.log();
+
+			// Próximo Irmão
+			primeiro.nextSibling.log();
+
+			// Ultimo elemento da lista
+			const ultimo = lista.lastChild;
+			ultimo.log();
+
+			// Irmão anterior
+			ultimo.previousSibling.log();
+
+			// Retorna todos os filhos, porém como HTML colection
+			lista.children.log();
+
+			// Primeiro elemento de fato
+			lista.firstElementChild.log();
+            // Último elemento de fato
+			lista.lastElementChild.log();
+
+			// O elemento anterior da lista de fato
+			lista.parentNode.previousElementSibling.log();
+            // O elemento próximo da lista de fato
+			lista.parentNode.nextElementSibling.log();
+
+			// Acessar propriamente os elementos é mais recomendado
+			document.querySelectorAll('div ul li').log();
+		</script>
+	</body>
 </html>

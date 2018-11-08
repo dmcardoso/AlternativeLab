@@ -1,38 +1,51 @@
 <!DOCTYPE html>
 <html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Selecionar Elementos #03</title>
+		<link rel="stylesheet" href="css/estilo.css">
+		<style>
+			form {
+				display: flex;
+				flex-direction: column;
+			}
 
-<head>
-    <meta charset="UTF-8">
-    <title>Selecionar Elementos #03</title>
-    <link rel="stylesheet" href="css/estilo.css">
-    <style>
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        form input,
-        form select,
-        form button {
-            margin: 10px;
-            font-size: 1.6em;
-        }
-    </style>
-</head>
+			form input,
+			form select,
+			form button {
+				margin: 10px;
+				font-size: 1.6em;
+			}
+		</style>
+	</head>
 
-<body class="conteudo exercicio">
-    <h1>Formulário</h1>
-    <form name="pesquisa" action="http://www.google.com.br/search">
-        <input type="text" name="q" placeholder="Digite o termo...">
-        <select name="hl">
-            <option value="pt-br">Português (Brasil)</option>
-            <option value="en-us">Inglês (Americano)</option>
-        </select>
-        <button>Pesquisar</button>
-    </form>
-    <script>
-        // ...
-    </script>
-</body>
+	<body class="conteudo exercicio">
+		<h1>Formulário</h1>
+		<form name="pesquisa" action="http://www.google.com.br/search">
+			<input type="text" name="q" placeholder="Digite o termo...">
+			<select name="hl">
+				<option value="pt-br">Português (Brasil)</option>
+				<option value="en-us">Inglês (Americano)</option>
+			</select>
+			<button>Pesquisar</button>
+		</form>
+		<script>
+            // Retorna a lista de formulários
+            console.log(document.forms);
+            console.log(document.forms[0]);
 
+            console.log(document.getElementsByName('pesquisa'));
+            // Retorna o elemento com o name pesquisa
+            console.log(document.pesquisa);
+            // Retorna o input com o name q dentro do form com o name pesquisa
+            console.log(document.pesquisa.q);
+
+            // Altera o valor dos campos
+            document.pesquisa.q.value = "Linux Brasil";
+            document.pesquisa.hl.value = "en-us";
+
+            // Retorna o elemento selecionado do select
+            console.log(document.pesquisa.hl.selectedIndex);
+		</script>
+	</body>
 </html>
