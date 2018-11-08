@@ -1,16 +1,47 @@
 <!DOCTYPE html>
 <html>
+	<head>
+		<meta charset='UTF-8'>
+		<title>Modificando HTML #01</title>
+		<link rel='stylesheet' href='css/estilo.css'>
+	</head>
+	<body class='conteudo exercicio'>
+		<script>
+			const body = document.querySelector('body');
 
-<head>
-    <meta charset='UTF-8'>
-    <title>Modificando HTML #01</title>
-    <link rel='stylesheet' href='css/estilo.css'>
-</head>
+			// Cria elemento
+			const div1 = document.createElement('div');
 
-<body class='conteudo exercicio'>
-    <script>
-        // ...
-    </script>
-</body>
+			div1.classList.add('destaque');
+			div1.innerHTML = "Primeiro";
 
+			const div2 = document.createElement('div');
+			div2.setAttribute('wm-attribute', 'valor');
+			div2.innerHTML = "segundo";
+
+			const p = document.createElement('p');
+			p.innerHTML = 'Terceiro';
+			const div3 = document.createElement('div');
+			// Cria filho
+			div3.appendChild(p);
+
+			body.appendChild(div1);
+			body.appendChild(div2);
+			body.appendChild(div3);
+
+			const texto = document.createTextNode('Antes...');
+			// Insere antes passando a posição e o elemento
+			div3.insertBefore(texto, div3.childNodes[0]);
+
+			// Clona os filhos
+			const div4 = div3.cloneNode(true);
+			// Não clona os filhos
+			// const div4 = div3.cloneNode(false);
+
+			body.appendChild(div4);
+			// Remove o elemento
+			body.removeChild(div3);
+
+		</script>
+	</body>
 </html>
