@@ -1,17 +1,39 @@
 <!DOCTYPE html>
 <html>
+	<head>
+		<meta charset='UTF-8'>
+		<title>Trabalhando com Eventos #01</title>
+		<link rel='stylesheet' href='css/estilo.css'>
+	</head>
+	<body class="conteudo exercicio">
+		<div>
+			 <!--Direto na tag-->
+			<!--onclick="navegarEm5s(event)"-->
+			<a  espera-um-pouco href="https://google.com.br">Google</a>
+		</div>
+		<script>
+            function navegarEm5s(e) {
+                e.preventDefault();
+                console.log("Saindo em 5s...");
 
-<head>
-    <meta charset='UTF-8'>
-    <title>Trabalhando com Eventos #01</title>
-    <link rel='stylesheet' href='css/estilo.css'>
-</head>
+                setTimeout(() => {
+                    const link = e.target;
 
-<body class="conteudo exercicio">
-    <div>
-        <a href="https://google.com.br">Google</a>
-    </div>
-    <script>
-        // ...
-    </script>
-</body>
+                    window.location.href = link.href;
+                }, 5000);
+            }
+
+            // Evento selecionando
+            const a = document.querySelector('a');
+			a.onclick = navegarEm5s;
+
+            // Com atributo
+            const al = document.querySelector('[espera-um-pouco]');
+            al.onclick = navegarEm5s;
+
+
+            // document.querySelector('a').addEventListener('click', navegarEm5s);
+
+		</script>
+	</body>
+</html>
