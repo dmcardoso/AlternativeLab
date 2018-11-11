@@ -32,6 +32,8 @@ atlassian-ide-plugin.xml
 
 # Editor-based Rest Client
 .idea/httpRequests
+
+#Personal
 /migracoesNucleo/MigracaoWordpress/NucleoADM/antigo/
 /migracoesNucleo/MigracaoWordpress/NucleoADM/novo/
 /migracoesNucleo/**/novo/
