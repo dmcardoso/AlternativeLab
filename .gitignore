@@ -43,3 +43,4 @@ atlassian-ide-plugin.xml
 /node_modules/
 # Ingora todas as pastas com esse nome dentro de ScriptsJS
 /ScriptsJS/**/node_modules/
+/ScriptsJS/WebModerno/cap_ajax/upload/**

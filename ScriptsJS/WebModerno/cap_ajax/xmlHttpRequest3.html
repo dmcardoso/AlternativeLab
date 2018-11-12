@@ -1,16 +1,45 @@
 <!DOCTYPE html>
 <html>
+	<head>
+		<meta charset='UTF-8'>
+		<title>XMLHttpRequest #03</title>
+		<link rel='stylesheet' href='css/estilo.css'>
+	</head>
 
-<head>
-    <meta charset='UTF-8'>
-    <title>XMLHttpRequest #03</title>
-    <link rel='stylesheet' href='css/estilo.css'>
-</head>
+	<body class="conteudo exercicio">
+		<h1>Estados</h1>
 
-<body class="conteudo exercicio">
-    <h1>Estados</h1>
+		<script>
+			function ajax(config) {
+				const xhr = new XMLHttpRequest();
+				xhr.open(config.method, config.url, true);
 
-    <script>
-        // ...
-    </script>
-</body>
+				xhr.onreadystatechange = e => {
+				    if(xhr.readyState === 4){
+				        if(xhr.status === 200){
+				            config.success(xhr.responseXML);
+				        }else if(xhr.status >= 400){
+				            config.error({
+					            code: xhr.status,
+					            text: xhr.statusText
+				            })
+				        }
+				    }
+				}
+            }
+
+            ajax({
+	            url: 'dados/estados.xml',
+	            method: "get",
+	            success(res){
+	                const estados = res.getElementsByTagName('estado');
+	                const itens = Array.from(estados).reduce(
+		                (html, estado) => {
+		                    html + `<li>${estado.attributes.nome.value}</li>`;
+		                }
+	                )
+	            }
+            })
+		</script>
+	</body>
+</html>
