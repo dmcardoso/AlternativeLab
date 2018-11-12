@@ -10,34 +10,40 @@
 		<h1>Estados</h1>
 
 		<script>
-			function ajax(config) {
-				const xhr = new XMLHttpRequest();
-				xhr.open(config.method, config.url, true);
+            function ajax(config) {
+                const xhr = new XMLHttpRequest();
+                xhr.open(config.method, config.url, true);
 
-				xhr.onreadystatechange = e => {
-				    if(xhr.readyState === 4){
-				        if(xhr.status === 200){
-				            config.success(xhr.responseXML);
-				        }else if(xhr.status >= 400){
-				            config.error({
-					            code: xhr.status,
-					            text: xhr.statusText
-				            })
-				        }
-				    }
-				}
+                xhr.onreadystatechange = e => {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 200) {
+                            config.success(xhr.responseXML);
+                        } else if (xhr.status >= 400) {
+                            config.error({
+                                code: xhr.status,
+                                text: xhr.statusText
+                            })
+                        }
+                    }
+                }
             }
 
             ajax({
-	            url: 'dados/estados.xml',
-	            method: "get",
-	            success(res){
-	                const estados = res.getElementsByTagName('estado');
-	                const itens = Array.from(estados).reduce(
-		                (html, estado) => {
-		                    html + `<li>${estado.attributes.nome.value}</li>`;
-		                }
-	                )
+                url: 'dados/estados.xml',
+                method: "get",
+                success(res) {
+                    const estados = res.getElementsByTagName('estado');
+                    const itens = Array.from(estados).reduce(
+                        (html, estado) => {
+                            return html + `<li>${estado.attributes.nome.value}</li>`;
+                        }
+                        , '');
+	                document.body.insertAdjacentHTML('beforeend', `<ul>${itens}</ul>`);
+                },
+	            error(e){
+                    const msg = document.createTextNode(`${e.code}: ${e.text}`);
+
+                    document.body.appendChild(msg);
 	            }
             })
 		</script>
