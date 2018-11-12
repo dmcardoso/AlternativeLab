@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset='UTF-8'>
-		<title>XMLHttpRequest #03</title>
-		<link rel='stylesheet' href='css/estilo.css'>
-	</head>
+    <head>
+        <meta charset='UTF-8'>
+        <title>XMLHttpRequest #03</title>
+        <link rel='stylesheet' href='css/estilo.css'>
+    </head>
 
-	<body class="conteudo exercicio">
-		<h1>Estados</h1>
+    <body class="conteudo exercicio">
+        <h1>Estados</h1>
 
-		<script>
+        <script>
             function ajax(config) {
                 const xhr = new XMLHttpRequest();
                 xhr.open(config.method, config.url, true);
@@ -25,7 +25,9 @@
                             })
                         }
                     }
-                }
+                };
+
+                xhr.send();
             }
 
             ajax({
@@ -38,14 +40,14 @@
                             return html + `<li>${estado.attributes.nome.value}</li>`;
                         }
                         , '');
-	                document.body.insertAdjacentHTML('beforeend', `<ul>${itens}</ul>`);
+                    document.body.insertAdjacentHTML('beforeend', `<ul>${itens}</ul>`);
                 },
-	            error(e){
+                error(e) {
                     const msg = document.createTextNode(`${e.code}: ${e.text}`);
 
                     document.body.appendChild(msg);
-	            }
+                }
             })
-		</script>
-	</body>
+        </script>
+    </body>
 </html>
