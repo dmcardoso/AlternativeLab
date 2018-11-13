@@ -29,7 +29,7 @@ const SITE = "http://192.168.254.222/NucleoWeb/wordpress/";
 const ARQUIVOS = SITE . "wp-content/uploads/";
 
 //ALTERAR ID PARA SELECIONAR AS MÍDIAS REFERENTES À MIGRAÇÃO
-const ID = 884;
+const ID = 1091;
 
 //Alterar se o prefixo das tabelas for diferente
 $prefixo_tabela = "ng_";
