@@ -1,0 +1,14 @@
+{
+  "files": [
+    //        Pega todos os arquivos mas pode determinar a lista
+    "src/**/*.ts"
+  ],
+  "compilerOptions": {
+    //        Pasta raiz
+    "rootDir": "src",
+    //        Obriga a tipagem no typescript
+    "noImplicitAny": true,
+    //        Compila para a versão ...
+    "target": "es5"
+  }
+}
