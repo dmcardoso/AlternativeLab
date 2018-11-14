@@ -4,14 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack",
+    "start": "webpack-dev-server",
     "build": "cross-env NODE_ENV=production webpack"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "cross-env" : "5.1.5",
+    "webpack-dev-server": "3.1.4",
+    "file-loader": "1.1.11",
+    "cross-env": "5.1.5",
     "optimize-css-assets-webpack-plugin": "4.0.1",
     "uglifyjs-webpack-plugin": "1.2.5",
     "webpack": "4.8.1",
