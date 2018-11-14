@@ -1,0 +1,14 @@
+{
+  "name": "class_debugger",
+  "version": "1.0.0",
+  "description": "Classe para logs",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Daniel Moreira Cardoso",
+  "license": "MIT",
+  "dependencies": {
+    "fs": "0.0.1-security"
+  }
+}
