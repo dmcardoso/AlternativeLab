@@ -1,4 +1,4 @@
-const Log = require('./main');
+const Log = require('./log');
 const array = ["nome", ["outro", ["funciona?"]], "feijao"];
 const obj = {
     nome: "Daniel",

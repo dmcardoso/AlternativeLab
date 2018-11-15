@@ -1,12 +1,11 @@
 const fs = require('fs');
 const path = require('path');
-const util = require('util');
 
 let log_path = __dirname;
 
 const TYPE_LOG = [
-    {type: "d", color: "#535AFF", name: "Debug", associate: 'log.txt'},
-    {type: "e", color: "#FF1A0A", name: "Error", associate: 'error_log.txt'}
+    {type: "d", color: "#535AFF", type_name: "Debug", associate: 'log.txt'},
+    {type: "e", color: "#FF1A0A", type_name: "Error", associate: 'error_log.txt'}
 ];
 
 // Configura o log
@@ -14,7 +13,7 @@ const renderLog = function (data) {
     let html = "";
 
     html += "<br><hr style='border: 0; border-bottom: 1px solid #ccc; background: #000;'/><br>";
-    html += `<h1 style="color: ${data.color}">${data.name}</h1>`;
+    html += `<h1 style="color: ${data.color}">${data.type_name} |${data.name}</h1>`;
     html += `<span>Tipo: ${data.type_data} | Tamanho: ${data.size} | ${data.date}</span><br>`;
     if (data.type_data === "Object" || data.type_data === "Array") {
         html += `<pre>${print_r(data.log)}</pre>`;
@@ -71,36 +70,51 @@ const getTypeLog = function (type) {
 };
 
 const Log = function (path) {
+
     log_path = path;
+
     this.logD = function (name, data) {
         const data_log = {};
 
-        // Determina o tipo de dado
-        if (Array.isArray(data)) {
-            data_log.type_data = "Array";
-            data_log.size = data.length;
-        } else if (typeof data === 'object') {
-            data_log.type_data = "Object";
-            data_log.size = Object.keys(data).length;
-        } else if (typeof data === 'string') {
-            data_log.type_data = "String";
-            data_log.size = `${data.length} caracteres`;
-        }
+        // Junta o objeto com as propiedades do tipo de log
+        Object.assign(data_log ,addLog(name, data), getTypeLog("d"));
+
+        writeLog(data_log);
+    };
+
+    this.logE = function (name, data) {
+        const data_log = {};
 
         // Junta o objeto com as propiedades do tipo de log
-        Object.assign(data_log, getTypeLog("d"));
+        Object.assign(data_log ,addLog(name, data), getTypeLog("e"));
 
-        data_log.date = `Data do log: ${new Date().toLocaleString('pt-BR')}`;
-        data_log.log = data;
-
-        console.log(data_log);
-
-        writeFile(data_log);
+        writeLog(data_log);
     };
 };
 
+const addLog = function (name, data) {
+    const data_log = {};
+    // Determina o tipo de dado
+    if (Array.isArray(data)) {
+        data_log.type_data = "Array";
+        data_log.size = data.length;
+    } else if (typeof data === 'object') {
+        data_log.type_data = "Object";
+        data_log.size = Object.keys(data).length;
+    } else if (typeof data === 'string') {
+        data_log.type_data = "String";
+        data_log.size = `${data.length} caracteres`;
+    }
 
-const writeFile = function (data_log) {
+    data_log.name = name;
+    data_log.date = `Data do log: ${new Date().toLocaleString('pt-BR')}`;
+    data_log.log = data;
+
+    return data_log;
+};
+
+
+const writeLog = function (data_log) {
     const file_name = data_log.associate;
 
     // Determina o caminho do arquivo
