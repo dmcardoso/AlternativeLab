@@ -1,33 +1,47 @@
 <!DOCTYPE html>
 <html>
+	<head>
+		<meta charset='UTF-8'>
+		<title>Animação #02</title>
+		<link rel='stylesheet' href='css/estilo.css'>
+		<script src='js/jquery.js'></script>
+		<style>
+			body {
+				position: relative;
+				background-color: #999;
+				color: #000;
+			}
 
-<head>
-    <meta charset='UTF-8'>
-    <title>Animação #02</title>
-    <link rel='stylesheet' href='css/estilo.css'>
-    <script src='js/jquery.js'></script>
-    <style>
-        body {
-            position: relative;
-            background-color: #999;
-            color: #000;
-        }
+			div {
+				position: absolute;
+				display: inline;
+				border: solid 10px #000;
+				padding: 50px;
+				font-size: 3em;
+				background-color: crimson;
+			}
+		</style>
+	</head>
+	<body>
+		<div>Animar!</div>
+		<script>
+            const alterarLargura = function (valor, duracao, callback) {
+                $('div').animate({width: `+=${valor}`}, duracao, callback);
+            };
 
-        div {
-            position: absolute;
-            display: inline;
-            border: solid 10px #000;
-            padding: 50px;
-            font-size: 3em;
-            background-color: crimson;
-        }
-    </style>
-</head>
+            function moverDiagonal(valor, duracao, callback){
+                $('div').animate({top: `+=${valor}`, left: `+=${valor}`}, duracao, callback);
+            }
 
-<body>
-    <div>Animar!</div>
-
-    <script>
-        // ...
-    </script>
-</body>
+            function girar(valor, duracao, callback){
+                $('div').animate({transform: `+=${valor}`}, {
+                    step: function(valor){
+                        $(this).css('transform', `rotate(${valor}deg)`)
+                    },
+	                duration: duracao,
+                }, 'linear', callback);
+            }
+            $('div')
+		</script>
+	</body>
+</html>
