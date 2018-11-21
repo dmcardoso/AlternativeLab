@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport"
+		      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<link href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900"
+		      rel="stylesheet">
+		<title>Início</title>
+		<style>
+			* {
+				box-sizing: border-box;
+				margin: 0;
+				padding: 0;
+				font-family: 'Raleway', sans-serif;
+				font-size: 20px;
+			}
+
+			html {
+				width: 100%;
+				height: 100%;
+			}
+
+			body {
+				width: 100%;
+				height: 100%;
+				display: grid;
+				grid-template-rows: 1fr;
+				grid-template-columns: auto 1fr;
+				grid-template-areas: 'aside main';
+			}
+
+			body > aside {
+				width: 200px;
+				background-color: #1E1F2B;
+				grid-area: aside;
+				display: flex;
+				max-height: 100vh;
+				overflow: hidden;
+				height: 100vh;
+				flex-direction: column;
+				padding: 40px 15px;
+			}
+
+			body > main {
+				background-color: #282A3A;
+				grid-area: main;
+			}
+
+			aside .btn {
+				width: 100%;
+				height: 45px;
+				min-height: 45px;
+				border-radius: 6px;
+				font-size: 1rem;
+				color: #f5f5f5;
+				border: none;
+				outline: none;
+			}
+
+			aside .btn.btn-new {
+				background-color: #1A73E8;
+			}
+
+			aside .btn-new:hover {
+				cursor: pointer;
+			}
+
+			aside .btn-new:active {
+				background-color: #1A81FF;
+			}
+
+			aside > ul.projects {
+				display: flex;
+				flex-direction: column;
+				width: 100%;
+				margin-top: 25px;
+				height: 100%;
+				overflow: auto;
+			}
+
+			aside > ul.projects > li.project:hover {
+				background-color: #424249;
+				cursor: pointer;
+			}
+
+			aside > ul.projects > li.project:active {
+				background-color: #616163;
+			}
+
+			aside > ul.projects > li.project.selected {
+				background-color: #616163;
+			}
+
+			aside > ul.projects > li.project {
+				width: 100%;
+				color: #f5f5f5;
+				border-bottom: 1px solid #424249;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				font-size: 0.9rem;
+			}
+
+		</style>
+	</head>
+	<body>
+
+		<aside>
+			<button class="btn btn-new">Novo Projeto</button>
+			<ul class="projects">
+				<li class="project btn selected">
+					Projeto 1
+				</li>
+				<li class="project btn">
+					Projeto 1
+				</li>
+				<li class="project btn">
+					Projeto 1
+				</li>
+				<li class="project btn">
+					Projeto 1
+				</li>
+				<li class="project btn">
+					Projeto 1
+				</li>
+				<li class="project btn">
+					Projeto 1
+				</li>
+				<li class="project btn">
+					Projeto 1
+				</li>
+				<li class="project btn">
+					Projeto 1
+				</li>
+				<li class="project btn">
+					Projeto 1
+				</li>
+				<li class="project btn">
+					Projeto 1
+				</li>
+				<li class="project btn">
+					Projeto 1
+				</li>
+				<li class="project btn">
+					Projeto 1
+				</li>
+				<li class="project btn">
+					Projeto 1
+				</li>
+				<li class="project btn">
+					Projeto 1
+				</li>
+				<li class="project btn">
+					Projeto 1
+				</li>
+				<li class="project btn">
+					Projeto 1
+				</li>
+				<li class="project btn">
+					Projeto 1
+				</li>
+				<li class="project btn">
+					Projeto 1
+				</li>
+				<li class="project btn">
+					Projeto 1
+				</li>
+				<li class="project btn">
+					Projeto 1
+				</li>
+			</ul>
+		</aside>
+		<main></main>
+
+	</body>
+</html>
