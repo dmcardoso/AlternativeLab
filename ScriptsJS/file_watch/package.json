@@ -1,0 +1,13 @@
+{
+  "name": "file_watch",
+  "version": "1.0.0",
+  "description": "",
+  "main": "file_watch.js",
+  "scripts": {
+    "start": "node file_watch.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {}
+}
