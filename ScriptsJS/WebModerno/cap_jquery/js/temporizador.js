@@ -21,7 +21,7 @@
         const regex = new RegExp(/(\d\d):(\d\d):(\d\d)/);
         const horarioAlvo = regex.exec(opcoesFinais.schedule);
 
-        let temporizador = sertInterval(() => {
+        let temporizador = setInterval(() => {
             const agora = new Date();
             const alvo = new Date();
             alvo.setHours(horarioAlvo[1]);
@@ -31,7 +31,7 @@
             const diferencaEmMili = alvo.getTime() - agora.getTime();
 
             if(diferencaEmMili >= 0){
-                const diferenca = regex.exec(new Date(diferencaEmMili).toISOString);
+                const diferenca = regex.exec(new Date(diferencaEmMili).toISOString());
 
                 horaDezena.html(diferenca[1][0]);
                 horaUnidade.html(diferenca[1][1]);
