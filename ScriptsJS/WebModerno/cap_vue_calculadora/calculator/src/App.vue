@@ -9,7 +9,7 @@
     import Calculator from './main/Calculator';
 
     export default {
-        components: Calculator
+        components: {Calculator}
     };
 </script>
 
