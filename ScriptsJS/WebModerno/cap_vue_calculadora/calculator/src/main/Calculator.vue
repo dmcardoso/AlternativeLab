@@ -41,9 +41,25 @@
                 Object.assign(this.$data, this.$options.data());
             },
             setOperation(operation) {
-                if(this.current === 0){
+                if (this.current === 0) {
                     this.operation = operation;
-                    this.current = 1
+                    this.current = 1;
+                    this.clearDisplay = true;
+                } else {
+                    const equals = operation === "=";
+                    const currentOperation = this.operation;
+
+                    try {
+                        this.values = eval(`${this.values[0]} ${currentOperation} ${this.values[1]}`)
+                    } catch (e) {
+                        this.$emit('onError', e);
+                    }
+
+                    this.values[1] = 0;
+                    this.displayValue = this.values[0];
+                    this.operation = equals ? null : operation;
+                    this.current = equals ? 0 : 1;
+                    this.clearDisplay = !equals;
                 }
             },
             addDigit(n) {
@@ -58,11 +74,15 @@
                 this.displayValue = displayValue;
                 this.clearDisplay = false;
 
-                if (n !== ".") {
-                    const i = this.current;
-                    const newValue = parseFloat(displayValue);
-                    this.values[i] = newValue;
-                }
+                // Alternativa 1
+                this.values[this.current] = displayValue;
+
+                // Alternativa 2 - para realmente ser float
+                // if (n !== ".") {
+                //     const i = this.current;
+                //     const newValue = parseFloat(displayValue);
+                //     this.values[i] = newValue;
+                // }
             }
         }
     };
