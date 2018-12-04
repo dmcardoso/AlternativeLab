@@ -21,9 +21,9 @@
                     </thead>
                     <tbody>
                         <tr v-for="(sale, index) in salesByProduct">
-                            <th>#{{index + 1}}</th>
-                            <th>#{{sale.name}}</th>
-                            <th v-money="'R$'">#{{sale.value}}</th>
+                            <th>{{index + 1}}</th>
+                            <th>{{sale.name}}</th>
+                            <th v-money="'R$'">{{sale.value}}</th>
                         </tr>
                     </tbody>
                     <tfoot>
@@ -103,7 +103,7 @@
                                 return grouped;
                             }
 
-                            grouped[sale.name].value = sale.price * sale.qtde;
+                            grouped[sale.name].value += sale.price * sale.qtde;
                             return grouped;
                         }, {});
 
