@@ -50,7 +50,7 @@
                     const currentOperation = this.operation;
 
                     try {
-                        this.values = eval(`${this.values[0]} ${currentOperation} ${this.values[1]}`)
+                        this.values[0] = eval(`${this.values[0]} ${currentOperation} ${this.values[1]}`)
                     } catch (e) {
                         this.$emit('onError', e);
                     }
