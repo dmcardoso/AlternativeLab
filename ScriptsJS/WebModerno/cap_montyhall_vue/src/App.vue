@@ -6,9 +6,10 @@
 
 <script>
 
+    import Gift from './components/Gift';
+
     export default {
-        name: 'app',
-        components: {}
+        components: {Gift}
     }
 </script>
 
@@ -20,7 +21,7 @@
 
     body {
         color: white;
-        background: linear-gradient();
+        background: linear-gradient(to right, rgb(21, 153, 87), rgb(21, 87, 153));
     }
 
     #app {
@@ -35,4 +36,5 @@
         padding: 20px;
         margin-bottom: 60px;
     }
+
 </style>
