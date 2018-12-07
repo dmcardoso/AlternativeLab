@@ -18,4 +18,10 @@ $resultado = in_array("chave_1", array_keys($array));
 
 echo $resultado . "<br>";
 
+$lastPosition = end($array);
+echo $lastPosition . "<br>";
+$chaves = array_keys($array);
+$lastkey = end($chaves);
+echo $lastkey;
+
 ?>
