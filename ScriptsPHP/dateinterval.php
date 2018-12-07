@@ -64,9 +64,11 @@ try {
     $mes_12 = "12";
 
     $bimestre = ceil((int)$mes_5 / 2);
-    echo "<br>" . $bimestre . "<br><br>";
+//    echo "<br>" . $bimestre . "<br><br>";
 
-    echo(date("Y-m-d"));
+//    echo(date("Y-m-d"));
+    echo "<br> >>>";
+    echo date("Y-m-d H:i:s", '1543543200');
 } catch (Exception $e) {
     echo $e;
 }

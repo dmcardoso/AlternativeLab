@@ -38,7 +38,7 @@
         position: absolute;
         width: 15px;
         height: 85px;
-        left: calc(100% - (15px / 2));
+        left: calc(50% - (15px / 2));
         background-color: red;
     }
 
