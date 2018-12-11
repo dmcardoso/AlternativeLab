@@ -1,0 +1,12 @@
+show dbs <- lista os bancos existentes
+show collections <- lista as collections
+use banco <- mesmo sem estar criado
+
+db.createCollection('name_collection') <- cria uma coleção *case sensitive*
+db.Collection_name.drop() <- deleta a coleção
+db.collection_name.insert({objeto}) <- para inserir dados em uma coleção *mesmo que ela não exista*
+db.collection_name.save({objeto}) <- para inserir dados em uma coleção *mesmo que ela não exista*
+db.collection_name.find() <- lista os objetos daquela coleção
+db.collection_name.find().pretty() <- lista os objetos daquela coleção em formato json
+
+Para gerar ids basta chamar a função: ObjectId()
