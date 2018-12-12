@@ -10,3 +10,32 @@ db.collection_name.find() <- lista os objetos daquela coleção
 db.collection_name.find().pretty() <- lista os objetos daquela coleção em formato json
 
 Para gerar ids basta chamar a função: ObjectId()
+
+db.collection.findOne({param: valor}) <- consultas por índices traz um único
+db.collection.find({param: valor}) <- consultas por índices traz todos que contém
+db.collection.findOne() <- consultas para trazer um registro
+
+db.collection.find({$or|and: [{param: valor}, {param: valor}]}).pretty() <- consultas com operadoes
+
+db.collection.find({param: {$exists: true}}).pretty() <- consulta para saber qual coleção tem um determinado atributo
+
+db.collection.find().skip(quantidade) <- consulta para todos menos a quantidade
+db.collection.find().skip(quantidade).limit(quantidade) <- consulta para todos menos a quantidade com limite x
+db.collection.count() <- conta os registros da coleção
+
+db.collection.find({param: valor}, {attr: 1, attr: 1}).pretty() <- consulta com segundo parâmetro para saber quais dados trazer da coleção
+db.collection.find({param: valor}, {attr: 1, attr: 1, _id: 0}).pretty() <- consulta com segundo parâmetro para saber quais dados trazer da coleção sem o id
+
+db.collection.find({param: valor}, {"cidades.nome": 1, _id: 0}).pretty() <- consulta para trazer dados dentro de um array na coleção
+
+db.collection.aggregate([{$project: {nome: 1, "cidades.nome": 1, _id: 0}}]) <- traz todos os dados
+db.collection.aggregate([{$project: {populacao: {$sum: "$cidades.populacao"}, sigla: 1, _id: 0}}]) <- soma a população dos estados
+db.collection.aggregate([{$project: {populacao: {$sum: "$cidades.populacao"}, sigla: 1, _id: 0}}, {$group: {_id: 0 , populacaoTotal: {$sum: "$populacao"}}}]) <- soma a população total
+db.collection.aggregate([{$project: {populacao: {$sum: "$cidades.populacao"}, sigla: 1, _id: 0}}, {$group: {_id: 0 , populacaoTotal: {$sum: "$populacao"}}}, {$project: {_id: 0, populacaoTotal: 1}}]) <- soma a população total sem o id
+
+db.estados.aggregate([
+    {$match: {"cidades.nome": "Sorocaba"}}, // Filtra os estados que tem a cidade de Sorocaba
+    {$unwind: "$cidades"}, // Desempacota o estado para cada cidade ter seu estado
+    {$match: {"cidades.nome": "Sorocaba"}}, // Filtra qual pacote tem a cidade de sorocaba
+    {$project: {_id: "$cidades._id"}} // traz o id cidade encontrada
+]).pretty()
