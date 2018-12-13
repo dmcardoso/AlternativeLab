@@ -1,27 +1,41 @@
 const express = require('express');
 const app = express();
 const saudacao = require('./saudacaomid');
+const bodyParser = require('body-parser');
+const usuarioApi = require('./api/usuario');
 
+require('./api/produto')(app, "com param!");
+
+app.post('/usuario', usuarioApi.salvar);
+app.get('/usuario', usuarioApi.obter);
 
 app.use('/opa', (req, res, next) => {
     console.log("Antes...");
     next();
 });
 
+app.use(bodyParser.text());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true})); // para formulários
+
 app.use(saudacao("Daniel"));
 
 
 // Maneira difícil
+// app.post('/corpo', (req, res) => {
+//     let corpo = "";
+//     req.on('data', function(parte){
+//         corpo += parte;
+//     });
+//
+//     req.on('end', function () {
+//        // res.send(corpo);
+//        res.json(JSON.parse(corpo));
+//     });
+// });
+//
 app.post('/corpo', (req, res) => {
-    let corpo = "";
-    req.on('data', function(parte){
-        corpo += parte;
-    });
-
-    req.on('end', function () {
-       // res.send(corpo);
-       res.json(JSON.parse(corpo));
-    });
+    res.send(req.body.nome);
 });
 
 app.get('/clientes/relatorio', (req, res) => {
