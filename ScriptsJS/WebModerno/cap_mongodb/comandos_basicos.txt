@@ -39,3 +39,65 @@ db.estados.aggregate([
     {$match: {"cidades.nome": "Sorocaba"}}, // Filtra qual pacote tem a cidade de sorocaba
     {$project: {_id: "$cidades._id"}} // traz o id cidade encontrada
 ]).pretty()
+
+
+
+update: primeiro parâmetro é o filtro e o segundo é o update de fato
+
+db.collection.update({sigla: "SP"}, {$set: {populacao: 45340000}}) <- update
+db.collection.update({sigla: "AL"}, {$set: {cidades: [{nome: "Sergipe"}]}}) <- update em array que não existe
+db.collection.update({sigla: "SP"}, {$push: {cidades: {nome: "Santos", populacao: 433966}}}) <- update em array que já existe (se usar o set sobrescreve)
+db.collection.find({populacao: {$exists: true}}, {_id: 0, nome: 1}) <- consulta para saber quais estados tem o atributo população e trazendo só o nome
+
+
+remove: primeiro parâmetro é o filtro e o segundo a quantidade
+
+db.collection.remove({sigla: "AC"}) <- remove o estado que tem a sigla AC
+db.collection.remove({populacao: {$exists: false}}, 1) < remove os estados que não tem o atributo população, com o limite de 1
+
+db.collection.update({sigla: "RJ"}, {$set: {populacao: 16720000}}) <- atualizar a população do estado do RJ para 16720000
+
+operador $lt: last then
+db.collection.remove({populacao: {$lt: 20000000}}) <- remove os estados que tem população menor que 20000000
+
+
+
+
+
+// Empresas
+
+db.estados.find().pretty()
+
+db.empresas.insert({nome: "Bradesco", estadoId: object_id_do_estado})
+db.empresas.insert({nome: "Vale", cidadeId: object_id_da_cidade})
+
+
+// Consultas com lookup
+db.empresas.agregatte([
+    {$match: {nome: "Bradesco"}},
+    {$lookup: {
+        from: "estados", // Collection de referência
+        localField: "estadoId", // Campo que referencia na collection de empresas
+        foreignField: "_id", // Qual campo é referenciado
+        as: "estado" // alias
+    }},
+    {$unwind: "$estado"}
+]).pretty()
+
+
+db.empresas.agregatte([
+    {$match: {nome: "Vale"}},
+    {$lookup: {
+        from: "estados",
+        localField: "cidadeId",
+        foreignField: "cidades._id",
+        as: "estado"
+    }},
+    {$unwind: "$estado"},
+    {$unwind: "estado.cidades"},
+    {$addFields: {mesmaCidade: {$cmp: ["$estado.cidades._id", "$cidadeId"]}}},
+    {$match: {mesmaCidade: 0}}
+]).pretty()
+
+// Não funciona como último match
+    {$match: {"estado.cidades._id": "$cidadeId"}}
