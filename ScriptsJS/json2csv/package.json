@@ -1,0 +1,16 @@
+{
+  "name": "json2csv",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "json2csv": "^4.3.2",
+    "fs": "^0.0.1-security"
+  }
+}

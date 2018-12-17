@@ -1,0 +1,22 @@
+[
+  {
+    "nome": "Daniel",
+    "idade": 19,
+    "turma": "7º Período"
+  },
+  {
+    "nome": "Alan",
+    "idade": 23,
+    "turma": "8º Período"
+  },
+  {
+    "nome": "João",
+    "idade": 24,
+    "turma": "8º Período"
+  },
+  {
+    "nome": "Marco",
+    "idade": 26,
+    "turma": "5º Período"
+  }
+]
