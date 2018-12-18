@@ -4,13 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "startpdf": "node pdf.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "json2csv": "^4.3.2",
-    "fs": "^0.0.1-security"
+    "fs": "^0.0.1-security",
+    "html-pdf": "^2.2.0",
+    "json2csv": "^4.3.2"
   }
 }

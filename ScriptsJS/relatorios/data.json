@@ -18,5 +18,10 @@
     "nome": "Marco",
     "idade": 26,
     "turma": "5º Período"
+  },
+  {
+    "nome": "Agusto João",
+    "idade": 29,
+    "turma": "7º Período"
   }
 ]
