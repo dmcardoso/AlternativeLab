@@ -1,0 +1,51 @@
+docker container run nome_imagem
+docker container ps <- containers em execução
+docker container ps -a <- todos os containers executados
+docker container run --rm nome_imagem <- não aparece na lista de execuções
+docker container run -it nome_imagem <- executa no  modo interativo com acesso ao terminal
+docker container run --name NOME -it nome_imagem -> executa um container com um nome em específico para ser reutilizado
+docker container ls -> lista todos os containers em execução
+docker container ls -a -> lista todos os containers
+docker container start -ai nome_container -> executa o container já criado com aquele nome específico
+docker container run -p porta_para_acessar:porta_interna nome_imagem
+docker container run -p 8080:80 -v $(pwd) Ou %cd% /html:/usr/share/nginx/html nginx -> mapear diretórios
+docker container run -d --name ex-daemon-basic -p 8080:80 -v %cd%/html:/usr/share/nginx/html nginx -> -d é modo daemon (background)
+docker container stop nome_container -> para o container em execução pelo seu nome de identificação
+docker container restart nome_container ->restarta o container em execução
+docker container logs nome_container -> exibir os logs do container
+docker container inspect nome_container -> informações à respeito do container
+docker container exec ex-nome_container comando -> executar comandos no terminal no container em execução em background
+docker container run  -it --volumes-from=python-server debian cat /log/http-server.log -> Lê os logs na pasta do container de logs
+
+docker container run --rm --net none alpine ash -c "ifconfig" -> define o tipo de rede none, sem acesso à rede
+
+
+docker volume ls -> lista os volumes
+
+
+docker image rm id_imagem -> remove uma imagem
+docker image pull nome_imagem:versao -> baixa uma imagem
+docker image ls -> lista as imagens baixadas
+docker image tag nome_imagem novo_nome -> cria um identificador para uma imagem
+docker image build -> constrói uma imagem com histórico do que foi feito
+docker image push -> sobe a imagem para o registry local ou docker hub
+docker image build -t nome_imagem . -> construir uma imagem, o -t é para criar a tag da imagem
+docker image build --build-arg NOME_VARIAVEL=VALOR -t nome_imagem . -> constrói imagem atribuindo valor para varíavel caso exista
+docker image inspect --format="{{index .Config.Labels \"nome_label\"}}" nome_imagem -> mostra a label pelo identificador
+docker image push nucleosite/simple-build:1.0 -> sobe a imagem para o docker hub
+
+docker login --username=nucleosite -> para logar no docker hub
+
+docker network ls -> lista as redes disponíveis
+docker network inspect nome_rede -> mostra os atributos da rede
+docker network create --driver bridge rede_nova -> cria uma nova rede
+docker network connect nome_rede nome_container -> conectar uma rede à um container
+docker network disconnect nome_rede nome_container -> desconectar uma rede de um container
+
+Com o arquivo docker-compose.yml configurado:
+docker-compose up -> executa o arquivo e os comandos que tem que executar
+
+docker-compose up -d -> executa os comandos em modo daemon (background)
+
+Imagem -> é o equivalente à uma classe
+Container -> é equivalente a um objeto
