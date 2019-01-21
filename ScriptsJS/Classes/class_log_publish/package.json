@@ -1,0 +1,19 @@
+{
+  "name": "logger-debugging",
+  "description": "Classe para atribuição de logs",
+  "readmeFilename": "README.md" ,
+  "keywords": [
+    "logger",
+    "logger build"
+  ],
+  "version": "0.1.0",
+  "author": {
+    "name": "Daniel Moreira",
+    "email": "dmcardoso.99@hotmail.com"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=0.8.0"
+  },
+  "main": "index.js"
+}
