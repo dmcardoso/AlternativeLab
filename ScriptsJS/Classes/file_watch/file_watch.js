@@ -30,17 +30,21 @@ const readCache = require('read-cache');
 
 let contador = 0;
 
+// console.log("ola");
+
+
 const read = () => {
     readCache(path.resolve(__dirname, 'log.txt')).then(function (contents) {
         contents = contents.toString();
-        console.log(contents.substr(contador, contents.length));
+        console.log(contents.substr(contador, contents.length).trim());
         contador = contents.length;
     });
 };
 
+read();
 
-const watcher = watch(path.resolve(__dirname, 'log.txt'), {recursive: true}, function (evt, name) {
-    read();
+
+watch(path.resolve(__dirname, 'log.txt'), {recursive: true}, function (evt, name) {
     if (evt === "update") {
         read();
     }
