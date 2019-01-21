@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "logger-debugging": "0.0.3"
+    "logger-debugging": "0.0.3",
+    "node-watch": "^0.6.0",
+    "read-cache": "^1.0.0"
   }
 }
