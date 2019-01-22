@@ -1,5 +1,9 @@
 const fs = require('fs');
 const path = require('path');
+const Entities = require('html-entities').AllHtmlEntities;
+
+const entities = new Entities();
+
 
 let log_path = __dirname;
 
@@ -12,13 +16,13 @@ const TYPE_LOG = [
 const renderLog = function (data) {
     let html = "";
 
-    html += "<br><hr style='border: 0; border-bottom: 1px solid #ccc; background: #000;'/><br>";
+    html += "<hr style='border: 0; border-bottom: 1px solid #ccc; background: #000;'/><br>";
     html += `<h1 style="color: ${data.color}">${data.name}</h1>`;
     html += `<span>Tipo: ${data.type_data} | Tamanho: ${data.size} | ${data.date}</span><br>`;
     if (data.type_data === "Object" || data.type_data === "Array") {
-        html += `<pre>${print_r(data.log)}</pre>`;
+        html += `<pre>${entities.encode(print_r(data.log))}</pre>`;
     } else {
-        html += `<pre>${data.log}</pre>`;
+        html += `<pre>${entities.encode(data.log)}</pre>`;
     }
 
     return html;

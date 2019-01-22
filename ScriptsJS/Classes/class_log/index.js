@@ -1,5 +1,5 @@
 const Log = require('./log');
-const array = ["nome", ["outro", ["funciona?"]], "feijao"];
+const array = ["nome", ["outro", ["funciona?"]], "feijão é"];
 const obj = {
     nome: "Daniel",
     idade: 19,

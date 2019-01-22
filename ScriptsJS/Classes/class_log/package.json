@@ -9,6 +9,7 @@
   "author": "Daniel Moreira Cardoso",
   "license": "MIT",
   "dependencies": {
-    "fs": "0.0.1-security"
+    "fs": "0.0.1-security",
+    "html-entities": "^1.2.1"
   }
 }
