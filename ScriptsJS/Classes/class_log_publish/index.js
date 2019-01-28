@@ -1,5 +1,11 @@
 const fs = require('fs');
 const path = require('path');
+const Entities = require('html-entities').AllHtmlEntities;
+const moment = require('moment');
+moment.locale('pt-br');
+
+
+const entities = new Entities();
 
 let log_path = __dirname;
 
@@ -12,13 +18,13 @@ const TYPE_LOG = [
 const renderLog = function (data) {
     let html = "";
 
-    html += "<br><hr style='border: 0; border-bottom: 1px solid #ccc; background: #000;'/><br>";
-    html += `<h1 style="color: ${data.color}">${data.name}</h1>`;
-    html += `<span>Tipo: ${data.type_data} | Tamanho: ${data.size} | ${data.date}</span><br>`;
+    html += "<hr style='border: 0; border-bottom: 1px solid #ccc; background: #000; margin-bottom: 15px;'/>";
+    html += `<h1 style="color: ${data.color};margin-top:0;margin-bottom:0;">${data.name}</h1>`;
+    html += `<span>Tipo: ${data.type_data} | Tamanho: ${data.size} | ${data.date}</span>`;
     if (data.type_data === "Object" || data.type_data === "Array") {
         html += `<pre>${print_r(data.log)}</pre>`;
     } else {
-        html += `<pre>${data.log}</pre>`;
+        html += `<pre>${entities.encode(data.log)}</pre>`;
     }
 
     return html;
@@ -49,11 +55,11 @@ const print_r = function (obj, t) {
                     break;
 
                 case '[object String]':
-                    val2 = '\'' + val1 + '\'';
+                    val2 = '\'' + entities.encode(val1) + '\'';
                     break;
 
                 default:
-                    val2 = val1;
+                    val2 = entities.encode(val1);
             }
             str += tab + '\t' + prop + ' => ' + val2 + ',\n';
         }
@@ -74,17 +80,17 @@ const addLog = function (type, data) {
     // Determina o tipo de dado
     if (Array.isArray(data)) {
         data_log.type_data = "Array";
-        data_log.size = data.length;
+        data_log.size = `${data.length} posi&ccedil;&otilde;es`;
     } else if (typeof data === 'object') {
         data_log.type_data = "Object";
-        data_log.size = Object.keys(data).length;
+        data_log.size = `${Object.keys(data).length} &iacute;ndices`;
     } else if (typeof data === 'string') {
         data_log.type_data = "String";
         data_log.size = `${data.length} caracteres`;
     }
 
     data_log.name = (type === "d") ? "Debug" : "Error";
-    data_log.date = `Data do log: ${new Date().toLocaleString('pt-BR')}`;
+    data_log.date = `Data do log: ${moment().format('LTS L')}`;
     data_log.log = data;
 
     return data_log;
@@ -99,8 +105,7 @@ const writeLog = function (data_log) {
 
     // Escreve no final do arquivo
     fs.appendFile(dest, renderLog(data_log), erro => {
-        const msg_log = (erro) ? `Log ${data_log.name} não gerado: ${erro}` : `Log ${data_log.name} gerado`;
-        console.log(msg_log);
+        // const msg_log = (erro) ? `Log ${data_log.name} não gerado: ${erro}` : `Log ${data_log.name} gerado`;
     });
 };
 

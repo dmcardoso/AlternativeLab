@@ -1,5 +1,9 @@
 const fs = require('fs');
 const path = require('path');
+require('logger-debugging');
+const nome = "oie";
+nome.log('d');
+nome.log('e');
 
 // Zera o conteúdo do arquivo
 // fs.writeFile('./log.txt', '', (err) => {
@@ -24,31 +28,31 @@ const path = require('path');
 //     }
 //
 // });
-
-const watch = require('node-watch');
-const readCache = require('read-cache');
-
-let contador = 0;
-
-// console.log("ola");
-
-
-const read = () => {
-    readCache(path.resolve(__dirname, 'log.txt')).then(function (contents) {
-        contents = contents.toString();
-        console.log(contents.substr(contador, contents.length).trim());
-        contador = contents.length;
-    });
-};
-
-read();
-
-
-watch(path.resolve(__dirname, 'log.txt'), {recursive: true}, function (evt, name) {
-    if (evt === "update") {
-        read();
-    }
-});
+//
+// const watch = require('node-watch');
+// const readCache = require('read-cache');
+//
+// let contador = 0;
+//
+// // console.log("ola");
+//
+//
+// const read = () => {
+//     readCache(path.resolve(__dirname, 'log.txt')).then(function (contents) {
+//         contents = contents.toString();
+//         console.log(contents.substr(contador, contents.length).trim());
+//         contador = contents.length;
+//     });
+// };
+//
+// read();
+//
+//
+// watch(path.resolve(__dirname, 'log.txt'), {recursive: true}, function (evt, name) {
+//     if (evt === "update") {
+//         read();
+//     }
+// });
 
 // watcher.close();
 
