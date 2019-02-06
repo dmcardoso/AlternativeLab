@@ -1,15 +1,15 @@
 <?php
 function cmp($a, $b) {
+    echo $a;
     return strcmp($a, $b);
 }
 
-$frutas[] = "limoes";
-$frutas[] = "abacaxis";
-$frutas[] = "goiabas";
+$frutas['arroz'] = "limoes";
+$frutas['aluguel'] = "abacaxis";
+$frutas['banana'] = "goiabas";
 
 usort($frutas, "cmp");
 
-foreach ($frutas as $chave => $valor) {
-    echo "{$frutas[$chave]}: " . $valor . "<br>";
-}
+echo "<pre>";
+print_r($frutas);
 ?>
