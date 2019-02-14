@@ -1,0 +1,530 @@
+{
+  "nepomuceno.mg.gov.br": {
+    "shadow_mtime": 1550142360,
+    "account_count": 87,
+    "accounts": {
+      "sms": {
+        "diskused": "619251477",
+        "disk_mtime": 1529001076,
+        "diskquota": "1073741824",
+        "suspended_login": 0
+      },
+      "almoxarifado": {
+        "suspended_login": 0,
+        "diskquota": "1073741824",
+        "disk_mtime": 1528387534,
+        "diskused": "0"
+      },
+      "juridico2": {
+        "disk_mtime": 1549564474,
+        "diskused": "0",
+        "diskquota": "1073741824",
+        "suspended_login": 0
+      },
+      "cpd": {
+        "suspended_login": 0,
+        "diskquota": "1073741824",
+        "disk_mtime": 1528387887,
+        "diskused": "0"
+      },
+      "segurancadotrabalho": {
+        "diskquota": "1073741824",
+        "disk_mtime": 1528995279,
+        "diskused": "25503245",
+        "suspended_login": 0
+      },
+      "fundomunicipalsaude": {
+        "diskquota": "1073741824",
+        "disk_mtime": 1528388120,
+        "diskused": "0",
+        "suspended_login": 0
+      },
+      "conselhopatrimonio": {
+        "suspended_login": 0,
+        "diskused": "1694744",
+        "diskquota": "1073741824",
+        "disk_mtime": 1528473715
+      },
+      "casadoempreendedor": {
+        "disk_mtime": 1528473673,
+        "diskused": 0,
+        "diskquota": "1073741824",
+        "suspended_login": 0
+      },
+      "bolsafamilia": {
+        "suspended_login": 0,
+        "diskquota": "1073741824",
+        "disk_mtime": 1528387638,
+        "diskused": "0"
+      },
+      "izamenezes": {
+        "diskused": "0",
+        "diskquota": "1073741824",
+        "disk_mtime": 1528388149,
+        "suspended_login": 0
+      },
+      "administrativo1": {
+        "diskquota": "1073741824",
+        "diskused": "0",
+        "disk_mtime": 1528387268,
+        "suspended_login": 0
+      },
+      "epidemiologia": {
+        "diskquota": "2147483648",
+        "disk_mtime": 1533578785,
+        "diskused": "536125813",
+        "suspended_login": 0
+      },
+      "controleinterno": {
+        "disk_mtime": 1528387797,
+        "diskused": "0",
+        "diskquota": "1073741824",
+        "suspended_login": 0
+      },
+      "engenharia": {
+        "disk_mtime": 1528387998,
+        "diskquota": "1073741824",
+        "diskused": "0",
+        "suspended_login": 0
+      },
+      "microempreendedor": {
+        "suspended_login": 0,
+        "disk_mtime": 1528388244,
+        "diskquota": "1073741824",
+        "diskused": "0"
+      },
+      "contabilidade2": {
+        "suspended_login": 0,
+        "diskquota": "1073741824",
+        "disk_mtime": 1528387778,
+        "diskused": "0"
+      },
+      "fiscalizacao": {
+        "suspended_login": 0,
+        "disk_mtime": 1528388075,
+        "diskused": "0",
+        "diskquota": "1073741824"
+      },
+      "educacao": {
+        "suspended_login": 0,
+        "diskquota": "3221225472",
+        "disk_mtime": 1533578773,
+        "diskused": "1160892214"
+      },
+      "bibliotecapublica": {
+        "suspended_login": 0,
+        "diskquota": "1073741824",
+        "disk_mtime": 1528387611,
+        "diskused": "0"
+      },
+      "contabilidade": {
+        "suspended_login": 0,
+        "diskquota": "1073741824",
+        "disk_mtime": 1528387735,
+        "diskused": "0"
+      },
+      "administrativopoliclinica": {
+        "suspended_login": 0,
+        "diskquota": "1073741824",
+        "disk_mtime": 1528387317,
+        "diskused": "0"
+      },
+      "licitacacao2": {
+        "suspended_login": 0,
+        "diskused": "0",
+        "diskquota": "1073741824",
+        "disk_mtime": 1528473785
+      },
+      "planejamento": {
+        "suspended_login": 0,
+        "disk_mtime": 1528388376,
+        "diskquota": "1073741824",
+        "diskused": "0"
+      },
+      "comunicacao": {
+        "suspended_login": 0,
+        "diskused": "0",
+        "disk_mtime": 1528387717,
+        "diskquota": "1073741824"
+      },
+      "compras": {
+        "disk_mtime": 1533578745,
+        "diskquota": "3221225472",
+        "diskused": "962852607",
+        "suspended_login": 0
+      },
+      "convenios": {
+        "diskused": "0",
+        "disk_mtime": 1528387855,
+        "diskquota": "1073741824",
+        "suspended_login": 0
+      },
+      "planejamento1": {
+        "disk_mtime": 1533580006,
+        "diskquota": "1073741824",
+        "diskused": "0",
+        "suspended_login": 0
+      },
+      "agricultura": {
+        "disk_mtime": 1528387518,
+        "diskused": "0",
+        "diskquota": "1073741824",
+        "suspended_login": 0
+      },
+      "nutricao": {
+        "suspended_login": 0,
+        "diskquota": "1073741824",
+        "diskused": "0",
+        "disk_mtime": 1528388298
+      },
+      "gabinete": {
+        "diskquota": 0,
+        "disk_mtime": 1550142360,
+        "diskused": "1357778478"
+      },
+      "psf2": {
+        "diskused": "318597",
+        "disk_mtime": 1529000400,
+        "diskquota": "1073741824",
+        "suspended_login": 0
+      },
+      "juridico1": {
+        "suspended_login": 0,
+        "disk_mtime": 1528388170,
+        "diskused": "0",
+        "diskquota": "1073741824"
+      },
+      "assistenciasocial": {
+        "suspended_login": 0,
+        "diskquota": "1073741824",
+        "diskused": "0",
+        "disk_mtime": 1528387590
+      },
+      "militar": {
+        "disk_mtime": 1528388285,
+        "diskquota": "1073741824",
+        "diskused": "0",
+        "suspended_login": 0
+      },
+      "pracaesportes": {
+        "diskused": "0",
+        "disk_mtime": 1528388395,
+        "diskquota": "1073741824",
+        "suspended_login": 0
+      },
+      "prontosocorro": {
+        "suspended_login": 0,
+        "disk_mtime": 1529000248,
+        "diskused": 0,
+        "diskquota": "1073741824"
+      },
+      "controleinterno2": {
+        "suspended_login": 0,
+        "diskused": "0",
+        "disk_mtime": 1528387836,
+        "diskquota": "1073741824"
+      },
+      "vigilanciasanitaria": {
+        "suspended_login": 0,
+        "disk_mtime": 1529001137,
+        "diskquota": "1073741824",
+        "diskused": "258063422"
+      },
+      "saudemental": {
+        "suspended_login": 0,
+        "diskquota": "1073741824",
+        "disk_mtime": 1528908857,
+        "diskused": "174824555"
+      },
+      "recursoshumano": {
+        "disk_mtime": 1528995333,
+        "diskquota": "1073741824",
+        "diskused": "0",
+        "suspended_login": 0
+      },
+      "psc": {
+        "suspended_login": 0,
+        "disk_mtime": 1529000298,
+        "diskused": 0,
+        "diskquota": "1073741824"
+      },
+      "ouvidoria": {
+        "suspended_login": 0,
+        "diskused": "0",
+        "disk_mtime": 1528388338,
+        "diskquota": "1073741824"
+      },
+      "meioambiente": {
+        "diskused": "0",
+        "diskquota": "1073741824",
+        "disk_mtime": 1528388206,
+        "suspended_login": 0
+      },
+      "secgabinete": {
+        "disk_mtime": 1528999955,
+        "diskquota": "1073741824",
+        "diskused": "443186040",
+        "suspended_login": 0
+      },
+      "fazenda": {
+        "suspended_login": 0,
+        "diskquota": "1073741824",
+        "diskused": "0",
+        "disk_mtime": 1528388041
+      },
+      "psf4": {
+        "suspended_login": 0,
+        "diskused": "1592119",
+        "diskquota": "1073741824",
+        "disk_mtime": 1529000432
+      },
+      "nucleo": {
+        "disk_mtime": 1531136070,
+        "diskused": "0",
+        "diskquota": "1073741824",
+        "suspended_login": 0
+      },
+      "ouvidoria1": {
+        "diskquota": "1073741824",
+        "disk_mtime": 1546886330,
+        "diskused": "0",
+        "suspended_login": 0
+      },
+      "psf1": {
+        "diskquota": "1073741824",
+        "diskused": 0,
+        "disk_mtime": 1529000362,
+        "suspended_login": 0
+      },
+      "endemias": {
+        "suspended_login": 0,
+        "disk_mtime": 1528387984,
+        "diskused": "0",
+        "diskquota": "1073741824"
+      },
+      "merendaescolar": {
+        "suspended_login": 0,
+        "diskused": "15794460",
+        "diskquota": "1073741824",
+        "disk_mtime": 1528473801
+      },
+      "ribeironeto": {
+        "diskquota": "1073741824",
+        "disk_mtime": 1529000567,
+        "diskused": "366992",
+        "suspended_login": 0
+      },
+      "juridico": {
+        "suspended_login": 0,
+        "disk_mtime": 1528473743,
+        "diskquota": "1073741824",
+        "diskused": "10566322"
+      },
+      "convenios2": {
+        "disk_mtime": 1528387873,
+        "diskquota": "1073741824",
+        "diskused": "0",
+        "suspended_login": 0
+      },
+      "compras3": {
+        "diskquota": "1073741824",
+        "disk_mtime": 1528387692,
+        "diskused": "0",
+        "suspended_login": 0
+      },
+      "nutricaoescolar": {
+        "suspended_login": 0,
+        "diskused": "0",
+        "diskquota": "1073741824",
+        "disk_mtime": 1528388320
+      },
+      "marcacao": {
+        "suspended_login": 0,
+        "disk_mtime": 1528388195,
+        "diskquota": "1073741824",
+        "diskused": "0"
+      },
+      "contabilidade1": {
+        "diskquota": "1073741824",
+        "diskused": "0",
+        "disk_mtime": 1528387754,
+        "suspended_login": 0
+      },
+      "tesouraria": {
+        "diskused": "9366609",
+        "disk_mtime": 1529001101,
+        "diskquota": "1073741824",
+        "suspended_login": 0
+      },
+      "procuradoriageral": {
+        "suspended_login": 0,
+        "disk_mtime": 1528997647,
+        "diskused": "806872",
+        "diskquota": "1073741824"
+      },
+      "almoxarifado2": {
+        "disk_mtime": 1529068145,
+        "diskused": "80952585",
+        "diskquota": "1073741824",
+        "suspended_login": 0
+      },
+      "siat": {
+        "diskquota": "1073741824",
+        "diskused": "10743",
+        "disk_mtime": 1529001063,
+        "suspended_login": 0
+      },
+      "parcerias": {
+        "diskquota": "1073741824",
+        "disk_mtime": 1528388350,
+        "diskused": "0",
+        "suspended_login": 0
+      },
+      "recursoshumanos": {
+        "diskquota": "1073741824",
+        "disk_mtime": 1529425509,
+        "diskused": "198144543",
+        "suspended_login": 0
+      },
+      "denunciavigilanciasanitaria": {
+        "suspended_login": 0,
+        "diskused": "0",
+        "diskquota": "1073741824",
+        "disk_mtime": 1528387926
+      },
+      "financeiro": {
+        "diskused": "0",
+        "diskquota": "1073741824",
+        "disk_mtime": 1528388059,
+        "suspended_login": 0
+      },
+      "administrativo": {
+        "suspended_login": 0,
+        "diskquota": "1073741824",
+        "diskused": "0",
+        "disk_mtime": 1528387176
+      },
+      "prefeito": {
+        "diskquota": "1073741824",
+        "disk_mtime": 1528473817,
+        "diskused": "21347845",
+        "suspended_login": 0
+      },
+      "licitacao": {
+        "diskused": "652745359",
+        "disk_mtime": 1533578823,
+        "diskquota": "2147483648",
+        "suspended_login": 0
+      },
+      "omad": {
+        "diskquota": "1073741824",
+        "disk_mtime": 1528473695,
+        "diskused": "0",
+        "suspended_login": 0
+      },
+      "fisioterapia": {
+        "suspended_login": 0,
+        "disk_mtime": 1528388096,
+        "diskused": "0",
+        "diskquota": "1073741824"
+      },
+      "tributacao": {
+        "suspended_login": 0,
+        "disk_mtime": 1528995171,
+        "diskused": "142806230",
+        "diskquota": "1073741824"
+      },
+      "projetocurumim": {
+        "disk_mtime": 1529000210,
+        "diskused": "325513",
+        "diskquota": "1073741824",
+        "suspended_login": 0
+      },
+      "obras": {
+        "diskquota": "1073741824",
+        "disk_mtime": 1528388329,
+        "diskused": "0",
+        "suspended_login": 0
+      },
+      "saojose": {
+        "suspended_login": 0,
+        "diskquota": "1073741824",
+        "disk_mtime": 1529001049,
+        "diskused": "6635115"
+      },
+      "controleinterno1": {
+        "diskused": "0",
+        "disk_mtime": 1528387816,
+        "diskquota": "1073741824",
+        "suspended_login": 0
+      },
+      "secgabinete1": {
+        "suspended_login": 0,
+        "diskused": "123644025",
+        "disk_mtime": 1529000349,
+        "diskquota": "1073741824"
+      },
+      "saae": {
+        "suspended_login": 0,
+        "diskused": 0,
+        "diskquota": "1073741824",
+        "disk_mtime": 1529001035
+      },
+      "psf3": {
+        "disk_mtime": 1529000420,
+        "diskquota": "1073741824",
+        "diskused": "12800732",
+        "suspended_login": 0
+      },
+      "compras4": {
+        "diskused": "0",
+        "diskquota": "1073741824",
+        "disk_mtime": 1528387705,
+        "suspended_login": 0
+      },
+      "casadacultura": {
+        "diskused": "0",
+        "diskquota": "1073741824",
+        "disk_mtime": 1528387656,
+        "suspended_login": 0
+      },
+      "laboratorio": {
+        "suspended_login": 0,
+        "diskquota": "1073741824",
+        "diskused": "2519264",
+        "disk_mtime": 1528473757
+      },
+      "gabviceprefeito": {
+        "diskquota": "1073741824",
+        "diskused": "89003",
+        "disk_mtime": 1528473729,
+        "suspended_login": 0
+      },
+      "patrimonio": {
+        "diskused": "0",
+        "disk_mtime": 1528388364,
+        "diskquota": "1073741824",
+        "suspended_login": 0
+      },
+      "saude": {
+        "suspended_login": 0,
+        "diskquota": "1073741824",
+        "disk_mtime": 1528908744,
+        "diskused": "89834570"
+      },
+      "antoniagarcia": {
+        "disk_mtime": 1528387561,
+        "diskused": "0",
+        "diskquota": "1073741824",
+        "suspended_login": 0
+      },
+      "compras1": {
+        "disk_mtime": 1528387680,
+        "diskused": "0",
+        "diskquota": "1073741824",
+        "suspended_login": 0
+      }
+    },
+    "quota_mtime": 1550142360
+  }
+}

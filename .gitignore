@@ -48,3 +48,6 @@ atlassian-ide-plugin.xml
 /ScriptsJS/WebModerno/cap_gulp/javascript/build/
 /ScriptsJS/WebModerno/cap_gulp/css/build/
 /ScriptsJS/WebModerno/cap_webpack/public/
+/ScriptsPHP/CSVEmails/email_accounts.json
+/**/vendor/
+/ScriptsPHP/CSVEmails/emails.csv
