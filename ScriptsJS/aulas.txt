@@ -1,0 +1,354 @@
+- [] [M1]
+	 - [] 1. M1#A01 - Introdução
+	 - [] 2. M1#A02 - Sobre o React
+	 - [] 3. M1#A03 - Começando a trabalhar com React
+	 - [] 4. M1#A04 - Criando elementos aninhados
+	 - [] 5. M1#A05 - Conhecendo o JSX
+	 - [] 6. M1#A06 - Aninhando com JSX e criando componentes
+- [] [MWP]
+	 - [] 1. MRW#01 - Apresentando minhas configurações de ambiente e o Webpack
+	 - [] 2. MRW#01.0.1 - Aula do futuro sobre versões das dependências
+	 - [] 3. MRW#02 - Configuração básica do Webpack
+	 - [] 4. MRW#03 - Usando o server do Webpack
+	 - [] 5. MRW#04 - Modularizando a aplicação
+	 - [] 6. MRW#05 - Criando uma aplicação em React
+	 - [] 7. MRW#06 - Usando o sistema de módulos do ES62015
+	 - [] 8. MRW#06.0.1 - Aula do futuro sobre ES Modules
+	 - [] 9. MRW#07 - Configurando JSX no babel e sourcemaps no Webpack
+	 - [] 10. MRW#08 - Configurando nossa aplicação para usar o React hot loader
+	 - [] 11. MRW#09 - Colocando o hot loader para funcionar
+	 - [] 12. MRW#10 - Configurando a ferramenta de lint
+- [] [M1C]
+	 - [] 1. M1#A07 - Passando props
+	 - [] 2. M1#A08 - Atributos do HTML
+	 - [] 3. M1#A09 - getDefaultProps
+	 - [] 4. M1#A10 - Passando outros tipos de dados via props
+	 - [] 5. M1#A11 - Renderizando componentes com funções puras
+	 - [] 6. M1#A12 - Renderizando componentes com classes do ES62015
+	 - [] 7. M1#A13 - Conhecendo a prop key
+	 - [] 8. M1#A14 - Problemas ao duplicar a key
+	 - [] 9. M1#A15 - Eventos
+	 - [] 10. M1#A16 - A prop children
+	 - [] 11. M1#A17 - Composição
+	 - [] 12. M1#A18 - State
+	 - [] 13. M1#A19 - Entendendo arrow functions
+	 - [] 14. M1#A20 - Stateful vs stateless
+	 - [] 15. M1#A21 - Lifecycle dos componentes
+	 - [] 16. M1#A22 - Lifecycle fluxo de montagem  desmontagem
+	 - [] 17. M1#A23 - Lifecycle fluxo de atualização (componentWillReceiveProps)
+	 - [] 18. M1#A24 - Lifecycle fluxo de atualização (shouldComponentUpdate)
+	 - [] 19. M1#A25 - Lifecycle fluxo de atualização (componentWillUpdate)
+	 - [] 20. M1#A26 - Lifecycle fluxo de atualização (componentDidUpdate)
+	 - [] 21. M1#A27 - propTypes
+	 - [] 22. M1#A28 - Introdução à formulários no React
+	 - [] 23. M1#A29 - Formulários (checkbox e radio)
+	 - [] 24. M1#A30 - Formulários (select e option)
+	 - [] 25. M1#A31 - Formulários (textarea)
+	 - [] 26. M1#A32 - Eventos para componente de formulário
+	 - [] 27. M1#A33 - setState é assíncrono
+	 - [] 28. M1#A34 - Conceitos e tipos de componentes com React, criando uma app (GitHub)
+	 - [] 29. M1#A35 - GitHub app - Criando a marcação da aplicação
+	 - [] 30. M1#A36 - GitHub app - Separando os componentes
+	 - [] 31. M1#A37 - GitHub app - Criando o Container Component da aplicação
+	 - [] 32. M1#A38 - GitHub app - Criando o objeto de estado da aplicação
+	 - [] 33. M1#A39 - GitHub app - Passando o state via props para o componente UserInfo
+	 - [] 34. M1#A40 - GitHub app - Fazendo o request dos dados do usuário
+	 - [] 35. M1#A41 - GitHub app - Refatorando a aplicação e populando os dados do usuário
+	 - [] 36. M1#A42 - GitHub app - popular dados dos repositórios
+	 - [] 37. M1#A43 - GitHub app - método para buscar repositórios e favoritos
+	 - [] 38. M1#A44 - GitHub app - buscar repositórios do usuário pesquisado
+	 - [] 39. M1#A45 - GitHub app - sobre eventos - desabilitar  habilitar campo de busca
+	 - [] 40. M1#A46 - GitHub app - loading enquanto estiver buscando os dados
+	 - [] 41. M1#A47 - GitHub app - organizando as propTypes
+	 - [] 42. M1#A48 - formas de fazer bind do this em eventos
+	 - [] 43. M1#A49 - Entendendo o spread operator do ES62015
+	 - [] 44. M1#A50 - Trabalhando com libs de terceiros junto com React
+	 - [] 45. M1#A51 - Um overview sobre testes
+	 - [] 46. M1#A52 - TDD
+	 - [] 47. M1#A53 - Testes unitários em componentes
+	 - [] 48. M1#A54 - Encerramento módulo 1
+- [] [M2]
+	 - [] 1. M2#A01 - Introdução
+	 - [] 2. M2#A02 - Conhecendo o create-react-app
+	 - [] 3. M2#A03 - Jest (overview)
+	 - [] 4. M2#A04 - Jest na prática - instalação e configuração
+	 - [] 5. M2#A05 - Jest na prática - conhecendo as funções para teste e asserção
+	 - [] 6. M2#A06 - Jest na prática - code coverage
+	 - [] 7. M2#A07 - Jest na prática - Integração com ES62015
+	 - [] 8. M2#A08 - Jest na prática - watch interativo
+	 - [] 9. M2#A09 - TDD - Assertion tools e desafio método map
+	 - [] 10. M2#A10 - TDD - método map
+	 - [] 11. M2#A11 - TDD - aprendendo recursão
+	 - [] 12. M2#A12 - TDD - map recursivo
+	 - [] 13. M2#A13 - TDD - map recursivo - parte 2
+	 - [] 14. M2#A14 - TDD - filter
+	 - [] 15. M2#A15 - TDD - filter recursivo
+	 - [] 16. M2#A16 - TDD - every
+	 - [] 17. M2#A17 - TDD - every recursivo
+	 - [] 18. M2#A18 - TDD - some
+	 - [] 19. M2#A19 - TDD - some recursivo
+	 - [] 20. M2#A20 - TDD - reverse
+	 - [] 21. M2#A21 - TDD - reverse recursivo
+	 - [] 22. M2#A22 - TDD - reduce
+	 - [] 23. M2#A23 - TDD - reduce (parte 2)
+	 - [] 24. M2#A24 - TDD - reduce recursivo
+	 - [] 25. M2#A25 - TDD - reduceRight
+	 - [] 26. M2#A26 - TDD - reduceRight recursivo
+	 - [] 27. M2#A27 - TDD - find
+	 - [] 28. M2#A28 - TDD - find recursivo
+	 - [] 29. M2#A29 - TDD - testando exceções
+	 - [] 30. M2#A30 - Conhecendo o Storybook
+	 - [] 31. M2#A31 - Trabalhando com assets configuração no Webpack
+	 - [] 32. M2#A32 - Trabalhando com assets HTML
+	 - [] 33. M2#A33 - Trabalhando com assets Exportando CSS em um arquivo
+	 - [] 34. M2#A34 - Webpack gerando bundle de produção
+	 - [] 35. M2#A35 - Webpack Dashboard
+	 - [] 36. M2#A36 - Trabalhando com assets Modularizando o CSS
+	 - [] 37. M2#A37 - Trabalhando com assets CSS Modules
+	 - [] 38. M2#A38 - Trabalhando com assets Critical Rendering Path
+	 - [] 39. M2#A39 - Trabalhando com assets Otimizando o Critical Rendering Path
+	 - [] 40. M2#A40 - Trabalhando com assets Ajustando ambiente de dev
+	 - [] 41. M2#A41 - cross-env
+	 - [] 42. M2#A42 - criando alias no webpack
+	 - [] 43. M2#A43 - Configurando o Storybook
+	 - [] 44. M2#A44 - Storybook - escrevendo histórias reais
+	 - [] 45. M2#A45 - Storybook - extendendo o webpack.config padrão
+	 - [] 46. M2#A46 - Storybook - localização do arquivo de config, linter e static build
+	 - [] 47. M2#A47 - Storybook - criando histórias para os outros componentes
+	 - [] 48. M2#A48 - Paginação - criando o componente
+	 - [] 49. M2#A49 - Conhecendo o Yarn
+	 - [] 50. M2#A50 - Paginação - ambiente para testes
+	 - [] 51. M2#A51 - Paginação - ambiente para testes - linter
+	 - [] 52. M2#A52 - Paginação - implementação inicial
+	 - [] 53. M2#A53 - Paginação - implementação - parte 2
+	 - [] 54. M2#A54 - Paginação - implementação - parte 3
+	 - [] 55. M2#A55 - Paginação - implementação - parte 4
+	 - [] 56. M2#A56 - Paginação - implementação - parte 5
+	 - [] 57. M2#A57 - Paginação - testando as excessões
+	 - [] 58. M2#A58 - Paginação - storybook
+	 - [] 59. M2#A59 - Paginação - storybook - parte 2
+	 - [] 60. M2#A60 - Paginação - storybook - parte 3
+	 - [] 61. M2#A61 - Paginação - storybook - parte 4
+	 - [] 62. M2#A62 - Abstraindo configuração padrão do webpack
+	 - [] 63. M2#A63 - Abstraindo configuração padrão do webpack - parte 2
+	 - [] 64. M2#A64 - Abstraindo configuração padrão do webpack - parte 3
+	 - [] 65. M2#A65 - Adicionando paginação na aplicação
+	 - [] 66. M2#A66 - Colocando a paginação pra funcionar
+	 - [] 67. M2#A67 - Trocando de página
+	 - [] 68. M2#A68 - Adicionando parâmetros de paginação para os repositórios
+	 - [] 69. M2#A69 - Ajustando as proptypes do state para paginação
+	 - [] 70. M2#A70 - Acertando informações da paginação - página ativa
+	 - [] 71. M2#A71 - Acertando informações da paginação - total de páginas
+	 - [] 72. M2#A72 - Webpack - atualizando nosso boilerplate para webpack v2
+	 - [] 73. M2#A73 - Atualização do Webpack - atualizando as dependências
+	 - [] 74. M2#A74 - Atualização do Webpack - removendo dependências não utilizadas
+	 - [] 75. M2#A75 - Atualização do Webpack - atualizar storybook e remover erros
+	 - [] 76. M2#A76 - Atualização do Webpack - o que o tree shaking e como configurar
+	 - [] 77. M2#A77 - ES6 - Promises
+	 - [] 78. M2#A78 - webpack clean plugin
+	 - [] 79. M2#A79 - ES7 - async  await
+	 - [] 80. M2#A80 - Adicionando async  await no nosso workflow
+	 - [] 81. M2#A81 - Ajustando storybook
+	 - [] 82. M2#A82 - Centralizar paths do webpack no common.js
+	 - [] 83. M2#A83 - Introdução à code splitting
+	 - [] 84. M2#A84 - CommonsChunkPlugin
+	 - [] 85. M2#A85 - CommonsChunkPlugin - opções do plugin
+	 - [] 86. M2#A86 - import() dinâmico
+	 - [] 87. M2#A87 - import() dinâmico - e o linter
+	 - [] 88. M2#A88 - webpack - file-loader imagens e outros assets além de CSS
+	 - [] 89. M2#A89 - webpack - url-loader imagens e outros assets além de CSS
+	 - [] 90. M2#A90 - webpack - raw-loader pegando conteúdo de qualquer tipo de arquivo
+	 - [] 91. M2#A91 - webpack - adicionando o file-loader e url-loader no nosso boilerplate
+	 - [] 92. M2#A92 - this.setState() - usando funções fazer atualizações em lote
+	 - [] 93. M2#A93 - Configuração do preloader do storybook
+	 - [] 94. M2#A94 - Aplicação editor de Markdown
+	 - [] 95. M2#A95 - Aplicação editor de Markdown - melhorando a estrutura inicial
+	 - [] 96. M2#A96 - Aplicação editor de Markdown - renderizando HTML
+	 - [] 97. M2#A97 - webpack - ajustando loader de CSS para depências externas
+	 - [] 98. M2#A98 - Aplicação editor de Markdown - adicionando opção de markdown no editor
+	 - [] 99. M2#A99 - Aplicação editor de Markdown - colorindo blocos de código
+	 - [] 100. M2#A100 - Aplicação editor de Markdown - como fica em produção
+	 - [] 101. M2#A101 - Aplicação editor de Markdown - analisando bundle de produção
+	 - [] 102. M2#A102 - Aplicação editor de Markdown - melhorar bundle de produção
+	 - [] 103. M2#A103 - Aplicação editor de Markdown - ordenando os scripts no HTML
+	 - [] 104. M2#A104 - Aplicação editor de Markdown - highlight.js assíncrono
+	 - [] 105. M2#A105 - Aplicação editor de Markdown - reduzindo o bundle de produção
+	 - [] 106. M2#A106 - Aplicação editor de Markdown - servindo arquivos comprimidos com gzip
+	 - [] 107. M2#A107 - react dev tools - conhecendo a ferramenta
+	 - [] 108. M2#A108 - Aplicação editor de Markdown - persistência de dados
+	 - [] 109. M2#A109 - Aplicação editor de Markdown - removendo ações do comp. stateless
+	 - [] 110. M2#A110 - Aplicação editor de Markdown - salvando automaticamente
+	 - [] 111. M2#A111 - Aplicação editor de Markdown - feedback de salvamento automático
+	 - [] 112. M2#A112 - Aplicação editor de Markdown - removendo do localStorage
+	 - [] 113. M2#A113 - Aplicação editor de Markdown - criar arquivos MD
+	 - [] 114. M2#A114 - Aplicação editor de Markdown - oportunidades de melhorias
+	 - [] 115. M2#A115 - Aplicação editor de Markdown - storybook do botão
+	 - [] 116. M2#A116 - Aplicação editor de Markdown - mais oportunidades de refactory
+	 - [] 117. M2#A117 - Aplicação editor de Markdown - atualização do React 15 - 15.5 - 16
+	 - [] 118. M2#A118 - Aplicação editor de Markdown - conhecendo a lib strclass
+	 - [] 119. M2#A119 - Aplicação editor de Markdown - adicionar novo MD no localStorage
+	 - [] 120. M2#A120 - Aplicação editor de Markdown - lista de arquivos MD (componente)
+	 - [] 121. M2#A121 - Aplicação editor de Markdown - popular a lista de arquivos MD
+	 - [] 122. M2#A122 - Aplicação editor de Markdown - remover arquivos dinamicamente
+	 - [] 123. M2#A123 - Aplicação editor de Markdown - editar e adicionar arquivos no state
+	 - [] 124. M2#A124 - Aplicação editor de Markdown - adicionar título para arquivos
+	 - [] 125. M2#A125 - Aplicação editor de Markdown - remover entradas que não são arquivos
+	 - [] 126. M2#A126 - Aplicação editor de Markdown - componente para título do arquivo
+	 - [] 127. M2#A127 - Aplicação editor de Markdown - opção para editar título
+	 - [] 128. M2#A128 - Aplicação editor de Markdown - usando só uma entrada no localStorage
+	 - [] 129. M2#A129 - Conhecendo o PureComponent
+	 - [] 130. M2#A130 - Introdução à context API
+	 - [] 131. M2#A131 - Context API - Trabalhando com informações dinâmicas
+	 - [] 132. M2#A132 - Context API - Resolvendo shouldComponentUpdate retornando false
+	 - [] 133. M2#A133 - Context API - Atualizando context à partir da emissão de eventos
+	 - [] 134. M2#A134 - Context API - Unsubscribe está funcionando
+	 - [] 135. M2#A135 - Higher Order Component (HOC) - Entendendo o que é um HOC
+	 - [] 136. M2#A136 - Context API - Isolando o context usando HOC
+	 - [] 137. M2#A137 - Testes - Conhecendo os snapshots
+	 - [] 138. M2#A138 - Testes - Atualizando Jest no workflow e criando teste de snapshot
+	 - [] 139. M2#A139 - Aplicação editor de Markdown - testando componentes
+	 - [] 140. M2#A140 - Enzyme - Testando lógica em componentes
+	 - [] 141. M2#A141 - Encerramento módulo #02
+- [] [M3]
+	 - [] 1. M3#A01 - Introdução
+	 - [] 2. M3#A02 - O que é, e para que serve Redux
+	 - [] 3. M3#A03 - Conhecendo o Redux - Primeiro princípio
+	 - [] 4. M3#A04 - Conhecendo o Redux - Segundo princípio
+	 - [] 5. M3#A05 - Conhecendo o Redux - Terceiro princípio - Funções Puras
+	 - [] 6. M3#A06 - Conhecendo o Redux - Terceiro princípio - Reducer
+	 - [] 7. M3#A07 - Primeiro contato com Redux
+	 - [] 8. M3#A08 - Criando nosso primeiro reducer com testes
+	 - [] 9. M3#A09 - Adicionando redux na aplicação Contador
+	 - [] 10. M3#A10 - Colocando o contador pra funcionar
+	 - [] 11. M3#A11 - Como funciona o createStore()
+	 - [] 12. M3#A12 - Contador no React
+	 - [] 13. M3#A13 -  Contador no React - estado no Redux
+	 - [] 14. M3#A14 - Contador no React - estado no Redux - parte 2
+	 - [] 15. M3#A15 - Contador no React - estado no Redux - parte 3
+	 - [] 16. M3#A16 - Adicionando mais contadores
+	 - [] 17. M3#A17 - Adicionando mais contadores - parte 2
+	 - [] 18. M3#A18 - Adicionando mais contadores - testes
+	 - [] 19. M3#A19 - Adicionando mais contadores - testes - parte 2
+	 - [] 20. M3#A20 - Adicionando mais contadores - testes - parte 3
+	 - [] 21. M3#A21 - Adicionando mais contadores - testes - parte 4
+	 - [] 22. M3#A22 - Adicionando mais contadores - componente
+	 - [] 23. M3#A23 - Adicionando mais contadores - action creators
+	 - [] 24. M3#A24 - App Todo List
+	 - [] 25. M3#A25 - App Todo List - Atualização do boilerplate
+	 - [] 26. M3#A26 - App Todo List - Atualização do storybook
+	 - [] 27. M3#A27 - App Todo List - Configuração exibição de erros
+	 - [] 28. M3#A28 - App Todo List - Implementação inicial
+	 - [] 29. M3#A29 - App Todo List - Reducer para lista de todos
+	 - [] 30. M3#A30 - App Todo List - Reducer para lista de todos - parte 2
+	 - [] 31. M3#A31 - App Todo List - Reducer para lista de todos - parte 3
+	 - [] 32. M3#A32 - App Todo List - Implementação do reducer todos - configuração do Redux
+	 - [] 33. M3#A33 - App Todo List - Implementação do reducer todos - Config do React Redux
+	 - [] 34. M3#A34 - App Todo List - Implementação do reducer de todos - Add Todo
+	 - [] 35. M3#A35 - App Todo List - Implementação do reducer de todos - Lista
+	 - [] 36. M3#A36 - App Todo List - Implementação do reducer de todos - Toggle Todo
+	 - [] 37. M3#A37 - App Todo List - Implementação do reducer de visibilityFilter
+	 - [] 38. M3#A38 - App Todo List - Implementação do reducer de visibilityFilter - parte 2
+	 - [] 39. M3#A39 - App Todo List - Como usar mais de um reducer
+	 - [] 40. M3#A40 - App Todo List - combineReducers
+	 - [] 41. M3#A41 - App Todo List - Implementação manual do combineReducers
+	 - [] 42. M3#A42 - App Todo List - Isolar componentes
+	 - [] 43. M3#A43 - App Todo List - Nomes para actions
+	 - [] 44. M3#A44 - App Todo List - Conectar filtro no state
+	 - [] 45. M3#A45 - App Todo List - Atualizar estado do filtro
+	 - [] 46. M3#A46 - App Todo List - Refactory no link do componente filtro
+	 - [] 47. M3#A47 - App Todo List - Mostrar todos filtrados
+	 - [] 48. M3#A48 - padrão para criação de reducers com o createReducer()
+	 - [] 49. M3#A49 - criando a função createReducer()
+	 - [] 50. M3#A50 - Busca CEP - Usando async no Redux
+	 - [] 51. M3#A51 - Busca CEP - Estilos CSS para aplicação
+	 - [] 52. M3#A52 - Busca CEP - Buscar endereço à partir de um CEP
+	 - [] 53. M3#A53 - Busca CEP - Populando tabela com dados do endereço
+	 - [] 54. M3#A54 - Busca CEP - buscando endereço à partir do form
+	 - [] 55. M3#A55 - Busca CEP - melhorando experiência do usuário
+	 - [] 56. M3#A56 - Busca CEP - criar reducer de endereços
+	 - [] 57. M3#A57 - Busca CEP - testes para createReducer
+	 - [] 58. M3#A58 - Busca CEP - testes para createReducer - parte 2
+	 - [] 59. M3#A59 - Busca CEP - passando state do endereço do Redux para a aplicação
+	 - [] 60. M3#A60 - Busca CEP - passando dispatch como props
+	 - [] 61. M3#A61 - Busca CEP - initialState da aplicação
+	 - [] 62. M3#A62 - replaceReducer - hot reload para reducers
+	 - [] 63. M3#A63 - Busca CEP - extendendo o Redux com middlewares
+	 - [] 64. M3#A64 - Busca CEP - entendendo o poder dos middlewares
+	 - [] 65. M3#A65 - Busca CEP - ações assíncronas no app com Redux - configuração da store
+	 - [] 66. M3#A66 - Busca CEP - ações assíncronas no app com Redux
+	 - [] 67. M3#A67 - Busca CEP - ações assíncronas no app com Redux - isFetching no Redux
+	 - [] 68. M3#A68 - Busca CEP - usando mais de um store enhancer no Redux
+	 - [] 69. M3#A69 - Busca CEP - como funciona o compose
+	 - [] 70. M3#A70 - Reactflix - Instruções para criação do nosso app
+	 - [] 71. M3#A71 - Reactflix - Setup inicial da aplicação
+	 - [] 72. M3#A72 - Reactflix - Estrutura base da aplicação
+	 - [] 73. M3#A73 - Reactflix - Lista de vídeos
+	 - [] 74. M3#A74 - Reactflix - Melhorando estilo do componente de vídeo
+	 - [] 75. M3#A75 - Reactflix - Single de vídeo
+	 - [] 76. M3#A76 - Reactflix - Firebase
+	 - [] 77. M3#A77 - Reactflix - Lendo dados do Firebase
+	 - [] 78. M3#A78 - Reactflix - Adicionando dados do Firebase
+	 - [] 79. M3#A79 - Reactflix - Editando dados do Firebase
+	 - [] 80. M3#A80 - Reactflix - Removendo dados do Firebase
+	 - [] 81. M3#A81 - Reactflix - Remover firebase global
+	 - [] 82. M3#A82 - Reactflix - Criar formulário de cadastro do vídeo
+	 - [] 83. M3#A83 - Reactflix - Criar ação de adicionar vídeo
+	 - [] 84. M3#A84 - Reactflix - Adicionar Vídeo dinamicamente
+	 - [] 85. M3#A85 - Reactflix - Salvar vídeo no Firebase
+	 - [] 86. M3#A86 - Reactflix - Limpar formulário após salvar vídeo
+	 - [] 87. M3#A87 - Reactflix - Opção para abrir  fechar formulário de cadastro
+	 - [] 88. M3#A88 - Reactflix - Extrair Header e Footer do App
+	 - [] 89. M3#A89 - Reactflix - Reducer de UI
+	 - [] 90. M3#A90 - Reactflix - Pegar dados cadastrados no Firebase
+	 - [] 91. M3#A91 - Reactflix - Link para vídeos na listagem
+	 - [] 92. M3#A92 - Reactflix - Abrir vídeo na single ao clicar
+	 - [] 93. M3#A93 - Reactflix - Ordenar conteúdo que vem do Firebase
+	 - [] 94. M3#A94 - Encerramento do módulo #03
+- [] [M4]
+	 - [] 1. M4#A01 - Introdução
+	 - [] 2. M4#A02 - Instalação do React Router
+	 - [] 3. M4#A03 - Componentes principais do React Router
+	 - [] 4. M4#A04 - Criando mais de uma rota
+	 - [] 5. M4#A05 - Problema na configuração do webpack do boilerplate
+	 - [] 6. M4#A06 - Rotas dinâmicas - passando parâmetros na rota
+	 - [] 7. M4#A07 - Conceitos de SPA - o request de uma rota
+	 - [] 8. M4#A08 - Conceitos de SPA - History API
+	 - [] 9. M4#A09 - Conceitos de SPA - History API - evento onpopstate
+	 - [] 10. M4#A10 - Conceitos de SPA - History API - método replaceState
+	 - [] 11. M4#A11 - Conceitos de SPA - History API - resolvendo problema reload da página
+	 - [] 12. M4#A12 - Component Switch e Erro 404
+	 - [] 13. M4#A13 - Rotas dinâmicas - definindo rotas específicas
+	 - [] 14. M4#A14 - NavLink - componente especial para navegação
+	 - [] 15. M4#A15 - Route - prop render
+	 - [] 16. M4#A16 - Route - prop children
+	 - [] 17. M4#A17 - React Pattern - Render Props
+	 - [] 18. M4#A18 - Route Props - match e parâmetros opcionais
+	 - [] 19. M4#A19 - Route Props - location (pathname e key)
+	 - [] 20. M4#A20 - Route Props - location (hash)
+	 - [] 21. M4#A21 - Route Props - location (search)
+	 - [] 22. M4#A22 - Route Props - location (state)
+	 - [] 23. M4#A23 - Route Props - history (location e length)
+	 - [] 24. M4#A24 - Route Props - history (método push)
+	 - [] 25. M4#A25 - Route Props - history (método replace)
+	 - [] 26. M4#A26 - Route Props - history (action)
+	 - [] 27. M4#A27 - Route Props - history (navegação no history)
+	 - [] 28. M4#A28 - Componente Redirect
+	 - [] 29. M4#A29 - Componente Prompt
+	 - [] 30. M4#A30 - withRouter()
+	 - [] 31. M4#A31 - HashRouter 
+	 - [] 32. M4#A32 - Problemas conhecidos - Rota que não renderiza
+	 - [] 33. M4#A33 - Informações iniciais sobre a aplicação React-zzaria
+	 - [] 34. M4#A34 - React-zzaria - iniciando o projeto
+	 - [] 35. M4#A35 - React-zzaria - Entendendo variáveis de ambiente (.env)
+	 - [] 36. M4#A36 - Novidades do React v16 - Fragment
+	 - [] 37. M4#A37 - Novidades do React v16 - lazy e Suspense
+	 - [] 38. M4#A38 - React-zzaria - Tratamento de erros em componentes (Error Boundaries)
+	 - [] 39. M4#A39 - React-zzaria - Logar mensagens de erro (Error Boundaries)
+	 - [] 40. M4#A40 - React-zzaria - Limpando o CRA (dependências exatas)
+	 - [] 41. M4#A41 - React-zzaria - Limpando o CRA (removendo arquivos desnecessários)
+	 - [] 42. M4#A42 - React-zzaria - Adicionando configs. básicas (.editorconfig e linter)
+	 - [] 43. M4#A43 - React-zzaria - Extendendo configurações do CRA sem ejetar
+	 - [] 44. M4#A44 - React-zzaria - Corrigindo erros de lint
+	 - [] 45. M4#A45 -  React-zzaria - Arquitetura da aplicação rotas iniciais
+	 - [] 46. M4#A46 - React-zzaria - Rotas internas no MainPage
+	 - [] 47. M4#A47 -  React-zzaria - Usando alias no CRA
