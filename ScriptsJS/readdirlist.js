@@ -45,7 +45,7 @@ function start() {
             return [Number(value.split('.')[0]), index];
         });
 
-        const ordered = numbers.sort(compararNumeros);
+        const ordered = numbers.sort(compareNumbers);
 
         ordered.forEach((value, index) => {
             numbersWithIndex.forEach((lecture, idx) => {
