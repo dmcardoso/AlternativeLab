@@ -1,11 +1,11 @@
 "use strict";
 
-var React = require('react');
+const React = require('react');
 
-var Title = React.createClass({
+const App = React.createClass({
    render: function () {
-     return (React.createElement('h1', null, 'Título'));
+     return (<div>Aplicação</div>);
    }
 });
 
-module.exports = Title;
+export default App;
