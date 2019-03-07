@@ -1,0 +1,217 @@
+{
+  "configs": {
+    "force_https": false,
+    "force_www": 0,
+    "auto_min": false,
+    "use_min_js": false,
+    "use_min_css": false,
+    "max_img_width": 1920,
+    "max_img_height": 1080,
+    "mobile": false,
+    "logs_online": true
+  },
+  "data": {
+    "name": "Prefeitura Santa Helena",
+    "version": "1.0"
+  },
+  "dbs": {
+    "principal": {
+      "online": {
+        "host": "localhost",
+        "user": "psantahe_nucleo",
+        "pass": "99277428",
+        "db": "psantahe_2018"
+      },
+      "development": "include>>dbs_principal_development.json"
+    }
+  },
+  "applications": {
+    "cms": {
+      "dir": "CMS",
+      "access": [
+        "painel",
+        "panel",
+        "login",
+        "entrar"
+      ],
+      "controllers": {
+        "index": {
+          "path": "Index",
+          "main": true,
+          "sub": {
+            "home": {
+              "path": "SPIndex\\Home"
+            },
+            "usuarios": {
+              "path": "SPIndex\\Usuarios"
+            },
+            "agenda": {
+              "path": "SPIndex\\Agenda"
+            },
+            "banner_promocional": {
+              "path": "SPIndex\\BannerPromocional"
+            },
+            "dir": {
+              "path": "SPIndex\\Dir"
+            },
+            "paginas": {
+              "path": "SPIndex\\Paginas"
+            },
+            "links": {
+              "path": "SPIndex\\Links"
+            },
+            "noticias": {
+              "path": "SPIndex\\Noticias"
+            },
+            "configuracoes": {
+              "path": "SPIndex\\Configuracoes"
+            },
+            "galerias": {
+              "path": "SPIndex\\Galeria"
+            },
+            "error": {
+              "path": "SPIndex\\Error",
+              "main": true
+            }
+          }
+        },
+        "login": {
+          "path": "Login"
+        },
+        "ajax": {
+          "path": "Ajax",
+          "sub": {
+            "configuracoes": {
+              "path": "ConAjax\\AjaxConfiguracoes"
+            },
+            "diretorios": {
+              "path": "ConAjax\\AjaxDiretorios"
+            },
+            "logs": {
+              "path": "ConAjax\\AjaxLogs"
+            },
+            "login": {
+              "path": "ConAjax\\AjaxLogin"
+            },
+            "paginas": {
+              "path": "ConAjax\\AjaxPaginas"
+            },
+            "agenda": {
+              "path": "ConAjax\\AjaxAgenda"
+            },
+            "banner_promocional": {
+              "path": "ConAjax\\AjaxBannerPromocional"
+            },
+            "links": {
+              "path": "ConAjax\\AjaxLinks"
+            },
+            "noticias": {
+              "path": "ConAjax\\AjaxNoticias"
+            },
+            "usuarios": {
+              "path": "ConAjax\\AjaxUsuarios"
+            },
+            "midias": {
+              "path": "ConAjax\\AjaxMidias"
+            },
+            "midias_uso": {
+              "path": "ConAjax\\MidiasUso"
+            },
+            "galeria": {
+              "path": "ConAjax\\AjaxGaleria"
+            },
+            "categorias": {
+              "path": "ConAjax\\Categorias"
+            },
+            "error": {
+              "path": "ConAjax\\Error",
+              "main": true
+            }
+          }
+        }
+      },
+      "main": false
+    },
+    "site": {
+      "dir": "Site",
+      "controllers": {
+        "ajax": {
+          "path": "Ajax",
+          "sub": {
+            "contato": {
+              "path": "ConAjax\\AjaxContato"
+            },
+            "error": {
+              "path": "ConAjax\\Error",
+              "main": true
+            }
+          }
+        },
+        "index": {
+          "path": "Index",
+          "main": true,
+          "sub": {
+            "home": {
+              "path": "Conteudo\\Home"
+            },
+            "pagina": {
+              "path": "Conteudo\\Pagina"
+            },
+            "noticia": {
+              "path": "Conteudo\\Noticia"
+            },
+            "noticias": {
+              "path": "Conteudo\\Noticias"
+            },
+            "buscar": {
+              "path": "Conteudo\\Buscar"
+            },
+            "contato": {
+              "path": "Conteudo\\Contato"
+            },
+            "galerias": {
+              "path": "Conteudo\\Galerias"
+            },
+            "galeria": {
+              "path": "Conteudo\\Galeria"
+            },
+            "agenda": {
+              "path": "Conteudo\\Agenda"
+            },
+            "error": {
+              "path": "Conteudo\\Error",
+              "main": true
+            }
+          }
+        }
+      },
+      "res_css": true,
+      "main": true
+    },
+    "app": {
+      "dir": "Aplicativo",
+      "controllers": {
+        "ajax": {
+          "path": "Ajax",
+          "main": true,
+          "sub": {
+            "controlador": {
+              "path": "ConAjax\\AjaxControlador"
+            },
+            "views": {
+              "path": "ConAjax\\AjaxViews"
+            },
+            "facebook": {
+              "path": "fbcomments"
+            },
+            "error": {
+              "path": "ConAjax\\Error",
+              "main": true
+            }
+          }
+        }
+      },
+      "main": false
+    }
+  }
+}
