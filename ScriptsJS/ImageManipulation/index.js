@@ -34,7 +34,7 @@ Jimp.read(imgRaw)
             return Jimp.read(imgLogo).then(logoTpl => {
                 logoTpl.opacity(0.2);
                 logoTpl.resize((width_image / 3), (height_image / 3));
-                return tpl.composite(logoTpl, ((width_image - (width_image/3)) / 2), ((height_image - (height_image/3)) / 2), [Jimp.BLEND_DESTINATION_OVER, 0.2, 0.2]);
+                return tpl.composite(logoTpl, ((width_image - (width_image / 3)) / 2), ((height_image - (height_image / 3)) / 2), [Jimp.BLEND_DESTINATION_OVER, 0.2, 0.2]);
             })
         }
     )
