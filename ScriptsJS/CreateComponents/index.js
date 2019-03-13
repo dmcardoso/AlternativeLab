@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const path = require('path');
 const fs = require('fs');
 require('./src/types_extend');
@@ -58,5 +60,4 @@ if (yargs['react-component']) {
     }
 
     buildComponentStructure(reactComponent, expectedTypes, sources);
-
 }
