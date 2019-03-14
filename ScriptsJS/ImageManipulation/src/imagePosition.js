@@ -7,4 +7,12 @@ const calculateImageCenter = ({imageWidth, imageHeight, markWidth, markHeight}) 
 
 const calculateCenter = ({imageSize, markSize}) => ((imageSize - markSize) / 2);
 
-module.exports = {calculateImageCenter};
+const center = (dimensions = {}) => {
+    return calculateImageCenter(dimensions);
+};
+
+const calculateImageLeft = ({markWidth, markHeight, marginTop, margin}) => {
+
+};
+
+module.exports = {center};
