@@ -39,7 +39,11 @@ const calculateImageRightTop = ({imageWidth, markWidth, marginY, marginX}) => {
     return {x, y};
 };
 
-const left = ({marginX = 0, marginY = 0, imageHeight = 0, markHeight = 0, top = false}) => {
+const left = (marginX = 0, marginY = 0, imageHeight = 0, markHeight = 0, top = false) => {
+    if (imageHeight === true) {
+        top = true;
+    }
+
     if (top) {
         return calculateImageLeftTop({marginX, marginY});
     } else {
@@ -48,7 +52,11 @@ const left = ({marginX = 0, marginY = 0, imageHeight = 0, markHeight = 0, top = 
 };
 
 
-const rigth = ({marginX = 0, marginY = 0, imageWidth = 0, markWidth = 0, imageHeight = 0, markHeight = 0, top = false}) => {
+const rigth = (marginX = 0, marginY = 0, imageWidth = 0, markWidth = 0, imageHeight = 0, markHeight = 0, top = false) => {
+    if (imageHeight === true) {
+        top = true;
+    }
+
     if (top) {
         return calculateImageRightTop({imageWidth, markWidth, marginY, marginX});
     } else {

@@ -1,7 +1,7 @@
 const calculateAspectRatio = (width, height) => width / height;
 const calculateImageProportions = (width, height) => {
-    const maxWidth = 1360;
-    const maxHeight = 1360;
+    const maxWidth = 210;
+    const maxHeight = 210;
     const ratio = calculateAspectRatio(width, height);
 
     let newWidth = maxWidth, newHeight = maxHeight;
@@ -12,7 +12,7 @@ const calculateImageProportions = (width, height) => {
         newHeight = maxWidth / ratio;
     }
 
-    return {newWidth, newHeight};
+    return {width: newWidth, height: newHeight};
 };
 
 module.exports = {calculateImageProportions};
