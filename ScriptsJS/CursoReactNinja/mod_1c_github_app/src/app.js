@@ -3,7 +3,11 @@
 import React, { Component } from 'react'
 import AppContent from './components/AppContent'
 
-const initialState = {}
+const initialState = {
+  userinfo: null,
+  repos: [],
+  starred: [],
+}
 
 class App extends Component {
 
@@ -14,7 +18,11 @@ class App extends Component {
 
   render () {
     return (
-      <AppContent/>
+      <AppContent
+        userinfo={this.state.userinfo}
+        starred={this.state.starred}
+        repos={this.state.repos}
+      />
     )
   }
 }
