@@ -1,0 +1,19 @@
+{
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "extends": [
+    "airbnb",
+    "react-app"
+  ],
+  "plugins": [
+    "jsx-a11y"
+  ],
+  "rules":{
+    "indent":["error", 4],
+    "camelcase": "off",
+    "react/jsx-indent": "off"
+  }
+}
