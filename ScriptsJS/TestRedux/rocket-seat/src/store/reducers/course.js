@@ -1,7 +1,7 @@
-import { createStore } from 'redux';
-
-function reducer () {
-    return [
+const initialState = {
+    activeLesson: {},
+    activeModule: {},
+    modules: [
         {
             id: 1,
             title: 'Iniciando com React',
@@ -30,9 +30,17 @@ function reducer () {
                 },
             ],
         },
-    ];
+    ],
+};
+
+export default function course (state = initialState, action) {
+    if (action.type === 'SET_LESSON_ACTIVE') {
+        return {
+            ...state,
+            activeLesson: action.lesson,
+            activeModule: action.module
+        };
+    }
+
+    return state;
 }
-
-const store = createStore(reducer);
-
-export default store;
