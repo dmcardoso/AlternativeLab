@@ -1,19 +1,31 @@
-'use strict'
+'use strict';
 
 import React from 'react';
 
-const UserInfo = () => {
-  return (
-    <div className="user-info">
-      <img src="https://avatars0.githubusercontent.com/u/28882783?v=4" alt=""/>
-      <h1><a href="https://github.com/dmcardoso">DanielMoreira</a></h1>
-      <ul className="repos-info">
-        <li>- Repositórios: 8</li>
-        <li>- Seguidores: 10</li>
-        <li>- Seguindo: 10</li>
-      </ul>
-    </div>
-  );
+const UserInfo = ({ userinfo }) => {
+    console.log(userinfo);
+    return (
+        <div className="user-info">
+            <img src={userinfo.foto}/>
+            <h1><a href={`https://github.com/${userinfo.login}`}>{userinfo.username}</a></h1>
+            <ul className="repos-info">
+                <li>- Repositórios: {userinfo.repos}</li>
+                <li>- Seguidores: {userinfo.followers}</li>
+                <li>- Seguindo: {userinfo.following}</li>
+            </ul>
+        </div>
+    );
+};
+
+UserInfo.propTypes = {
+    userinfo: React.PropTypes.shape({
+        username: React.PropTypes.string.isRequired,
+        repos: React.PropTypes.number.isRequired,
+        followers: React.PropTypes.number.isRequired,
+        following: React.PropTypes.number.isRequired,
+        foto: React.PropTypes.string.isRequired,
+        login: React.PropTypes.string.isRequired,
+    }),
 };
 
 export default UserInfo;
