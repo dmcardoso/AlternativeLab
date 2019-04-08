@@ -14,7 +14,7 @@ class App extends Component {
 
     searchFunc (e) {
         const { value } = e.target;
-        ajax().get(`https://api.github.com/users/${value}`)
+        ajax().get(this.getGitHubApiUrl(value))
             .then((result) => {
                 if (result.name) {
                     this.setState({
@@ -25,7 +25,9 @@ class App extends Component {
                             following: result.following,
                             foto: result.avatar_url,
                             login: result.login,
-                        }
+                        },
+                        repos: [],
+                        starred: [],
                     });
                 } else {
                     this.setState({ userinfo: null });
@@ -41,6 +43,27 @@ class App extends Component {
         this.state = { ...initialState };
 
         this.searchFunc = this.searchFunc.bind(this);
+        this.getRepos = this.getRepos.bind(this);
+    }
+
+    getGitHubApiUrl (username, type) {
+        const internalType = type ? `/${type}` : '';
+        const internalUser = username ? `/${username}` : '';
+        return `https://api.github.com/users${internalUser}${internalType}`;
+    }
+
+    getRepos (type) {
+        ajax().get(this.getGitHubApiUrl(this.state.userinfo.login,type))
+            .then((result) => {
+                this.setState({
+                    [type]: result.map((repo) => {
+                        return {
+                            name: repo.name,
+                            link: repo.html_url,
+                        };
+                    }),
+                });
+            });
     }
 
     render () {
@@ -50,6 +73,8 @@ class App extends Component {
                 userinfo={this.state.userinfo}
                 starred={this.state.starred}
                 repos={this.state.repos}
+                getRepos={this.getRepos('repos')}
+                getStarred={this.getRepos('starred')}
             />
         );
     }
