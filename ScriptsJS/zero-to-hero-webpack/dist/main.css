@@ -1,0 +1,15 @@
+#myMemes {
+  text-align: center;
+  margin: auto auto; }
+  #myMemes h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #333; }
+  #myMemes img {
+    border-radius: 16px;
+    padding: 8px;
+    border: 1px solid #aaa;
+    box-shadow: 2px 2px 1px #eee;
+    cursor: pointer; }
+
+
+/*# sourceMappingURL=main.css.map*/
