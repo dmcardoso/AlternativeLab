@@ -30,7 +30,7 @@ $conDestino = new PDO("mysql:dbname=" . BD_DESTINO . ";host=localhost", "root", 
 const SITE = "http://192.168.254.222/NucleoWeb/wordpress/";
 const ARQUIVOS = SITE . "wp-content/uploads/";
 //ALTERAR ID PARA SELECIONAR AS MÍDIAS REFERENTES À MIGRAÇÃO
-const ID = 597;
+const ID = 2058;
 
 try {
     $conDestino->beginTransaction();
@@ -53,7 +53,7 @@ try {
             $midia_nome = explode(".", explode("/", $meta)[2])[0];
 
             $query_post = $conDestino->prepare('
-        SELECT * FROM wp_posts where post_title="' . $midia_nome . '"'
+        SELECT * FROM ' . PREFIXO_TABLE . 'posts where post_title="' . $midia_nome . '"'
             );
 
             $bool_post = $query_post->execute();
@@ -64,14 +64,14 @@ try {
                 if ($post_id > 0) {
                     echo $post_id . "<br>";
 
-                    $query_relacao_post_capa = $conDestino->prepare("INSERT INTO wp_postmeta(meta_id, post_id, meta_key, meta_value) values(null, ?,'_thumbnail_id', ?)");
+                    $query_relacao_post_capa = $conDestino->prepare("INSERT INTO " . PREFIXO_TABLE . "postmeta(meta_id, post_id, meta_key, meta_value) values(null, ?,'_thumbnail_id', ?)");
                     $query_relacao_post_capa->bindValue(1, $post_id);
                     $query_relacao_post_capa->bindValue(2, $post_meta_id);
 
                     $query_relacao_post_capa->execute();
 
                 } else {
-                    throw new Exception("ID do post não é válido. Linha: " . $i);
+                    throw new Exception("ID do post não é válido. Linha: " . $i . '>>>'.$meta_id);
                 }
             }
         }

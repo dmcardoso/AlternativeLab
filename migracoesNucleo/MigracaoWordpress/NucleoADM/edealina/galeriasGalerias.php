@@ -92,16 +92,13 @@ try {
                         $post_meta_id = $result_post[0]['ID'];
 
                         if ($type_midia == "capa") {
-                            $query_relacao_post_capa = $conDestino->prepare("INSERT INTO {$prefixo_tabela}postmeta(meta_id, post_id, meta_key, meta_value) values(null, ?,'miniatura', ?)");
+
+                            $query_relacao_post_capa = $conDestino->prepare("INSERT INTO {$prefixo_tabela}postmeta(meta_id, post_id, meta_key, meta_value) values(null, ?,'_thumbnail_id', ?)");
                             $query_relacao_post_capa->bindValue(1, $post_id);
                             $query_relacao_post_capa->bindValue(2, $post_meta_id);
-//
+
                             $query_relacao_post_capa->execute();
 
-                            $query_relacao_post_miniatura = $conDestino->prepare("INSERT INTO {$prefixo_tabela}postmeta(meta_id, post_id, meta_key, meta_value) values(null, ?,'_miniatura', 'field_5b5ec69578a1c')");
-                            $query_relacao_post_miniatura->bindValue(1, $post_id);
-//
-                            $query_relacao_post_miniatura->execute();
                             echo "Capa para galeria {$post_id} <br>";
                         }
                     }
@@ -117,17 +114,11 @@ try {
             $ids = implode($v, ",");
             $galeria = '[gallery link="file" ids="' . $ids . '"]';
 
-            $query_relacao_post_capa = $conDestino->prepare("INSERT INTO {$prefixo_tabela}postmeta(meta_id, post_id, meta_key, meta_value) values(null, ?,'galeria', ?)");
-            $query_relacao_post_capa->bindValue(1, $i);
-            $query_relacao_post_capa->bindValue(2, $galeria);
+            $query_relacao_post_capa = $conDestino->prepare("UPDATE {$prefixo_tabela}posts set post_content = ? WHERE ID = ?");
+            $query_relacao_post_capa->bindValue(2, $i);
+            $query_relacao_post_capa->bindValue(1, $galeria);
 //
             $query_relacao_post_capa->execute();
-
-            $query_relacao_galeria = $conDestino->prepare("INSERT INTO {$prefixo_tabela}postmeta(meta_id, post_id, meta_key, meta_value) values(null, ?,'_galeria', 'field_5b5ec6a178a1d')");
-
-            $query_relacao_galeria->bindValue(1, $i);
-
-            $query_relacao_galeria->execute();
 
             echo "Galeria inserida em notícia {$i} <br>";
         }
