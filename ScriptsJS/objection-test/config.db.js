@@ -1,12 +1,7 @@
-const Knex = require('knex');
-const { Model } = require('objection');
-const knex_config = require('./knexfile');
+const { BaseModel } = require('./BaseModel');
+const yup = require('yup');
 
-const knex = new Knex(knex_config);
-
-Model.knex(knex);
-
-class Usuarios extends Model {
+class Usuarios extends BaseModel {
     static get tableName () {
         return 'usuarios';
     }
@@ -35,11 +30,11 @@ class Usuarios extends Model {
             }
         };
     }
-
+    //
     static get relationMappings () {
         return {
             categorias: {
-                relation: Model.BelongsToOneRelation,
+                relation: BaseModel.BelongsToOneRelation,
                 modelClass: Categorias,
                 join: {
                     from: 'categorias.id',
@@ -50,7 +45,13 @@ class Usuarios extends Model {
     }
 }
 
-class Categorias extends Model {
+Usuarios.prototype.rules = {
+    first_name: yup.string().required('Nome é obrigatório!'),
+    last_name: yup.string().required('Sobrenome é obrigatório!'),
+    categoria: yup.number().required('Categoria é obrigatório!')
+};
+
+class Categorias extends BaseModel {
     static get tableName () {
         return 'categorias';
     }
@@ -64,16 +65,16 @@ class Categorias extends Model {
     // used for input validation. Whenever a model instance is created
     // either explicitly or implicitly it is checked against this schema.
     // See http://json-schema.org/ for more info.
-    static get jsonSchema () {
-        return {
-            type: 'object',
-            required: ['categoria'],
-            properties: {
-                id: { type: 'integer' },
-                categoria: { type: 'string', minLength: 1, maxLength: 255 }
-            }
-        };
-    }
+    // static get jsonSchema () {
+    //     return {
+    //         type: 'object',
+    //         required: ['categoria'],
+    //         properties: {
+    //             id: { type: 'integer' },
+    //             categoria: { type: 'string', minLength: 1, maxLength: 255 }
+    //         }
+    //     };
+    // }
 }
 
 module.exports = { Categorias, Usuarios };
