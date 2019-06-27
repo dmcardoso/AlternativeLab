@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack:///./src/lazy-one.js"],"names":["__webpack_require__","r","__webpack_exports__"],"mappings":"wFAAAA,EAAAC,EAAAC,GAAeA,EAAA","file":"myAwesomeLazyModule.js","sourcesContent":["export default '😦';"],"sourceRoot":""}
