@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[3],[function(n,t,e){"use strict";e.r(t),e.d(t,"useless",function(){return i}),t.default=function(){return"This function does nothing"};var i=function(){return"neither this one!"}}]]);
+//# sourceMappingURL=3.js.map

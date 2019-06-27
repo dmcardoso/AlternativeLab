@@ -1,4 +1,6 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { output } = require('./module.paths');
+const path = require('path');
 
 module.exports = (env, argv) => [
     {
@@ -8,7 +10,15 @@ module.exports = (env, argv) => [
     {
         test: /\.(gif|png|jpe?g|svg)$/i,
         use: [
-            'file-loader',
+            {
+                loader: 'file-loader',
+                options: {
+                    name: '[hash].[ext]',
+                    outputPath: (url, resourcePath, context) => {
+                        return path.join(output.images, `\\${url}`);
+                    }
+                }
+            },
             {
                 loader: 'image-webpack-loader',
                 options: {
@@ -19,7 +29,17 @@ module.exports = (env, argv) => [
     },
     {  // Audio
         test: /\.(ogg|mp3|wav|mpe?g)$/i,
-        use: 'file-loader'
+        use: [
+            {
+                loader: 'file-loader',
+                options: {
+                    name: '[hash].[ext]',
+                    outputPath: (url, resourcePath, context) => {
+                        return path.join(output.audio, `\\${url}`);
+                    }
+                }
+            }
+        ]
     },
     {
         test: /\.(scss|css|sass)$/i,
