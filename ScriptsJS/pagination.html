@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Pagination</title>
+    </head>
+    <body>
+
+        <script>
+            const pagination = (props) => {
+                const items = [];
+                const {
+                    pageRangeDisplayed,
+                    pageCount,
+                    marginPagesDisplayed,
+                    breakLabel,
+                } = props;
+
+                const { selected } = props;
+
+                if (pageCount <= pageRangeDisplayed) {
+                    for (let index = 0; index < pageCount; index++) {
+                        items.push(index);
+                    }
+                } else {
+                    let leftSide = pageRangeDisplayed / 2;
+                    let rightSide = pageRangeDisplayed - leftSide;
+
+                    // If the selected page index is on the default right side of the pagination,
+                    // we consider that the new right side is made up of it (= only one break element).
+                    // If the selected page index is on the default left side of the pagination,
+                    // we consider that the new left side is made up of it (= only one break element).
+                    if (selected > pageCount - pageRangeDisplayed / 2) {
+                        rightSide = pageCount - selected;
+                        leftSide = pageRangeDisplayed - rightSide;
+                    } else if (selected < pageRangeDisplayed / 2) {
+                        leftSide = selected;
+                        rightSide = pageRangeDisplayed - leftSide;
+                    }
+
+                    let index;
+                    let page;
+                    let breakView;
+                    let createPageView = index => index;
+
+                    for (index = 0; index < pageCount; index++) {
+                        page = index + 1;
+
+                        // If the page index is lower than the margin defined,
+                        // the page has to be displayed on the left side of
+                        // the pagination.
+                        if (page <= marginPagesDisplayed) {
+                            items.push(createPageView(index));
+                            continue;
+                        }
+
+                        // If the page index is greater than the page count
+                        // minus the margin defined, the page has to be
+                        // displayed on the right side of the pagination.
+                        if (page > pageCount - marginPagesDisplayed) {
+                            items.push(createPageView(index));
+                            continue;
+                        }
+
+                        // If the page index is near the selected page index
+                        // and inside the defined range (pageRangeDisplayed)
+                        // we have to display it (it will create the center
+                        // part of the pagination).
+                        if (index >= selected - leftSide && index <= selected + rightSide) {
+                            items.push(createPageView(index));
+                            continue;
+                        }
+
+                        // If the page index doesn't meet any of the conditions above,
+                        // we check if the last item of the current "items" array
+                        // is a break element. If not, we add a break element, else,
+                        // we do nothing (because we don't want to display the page).
+                        if (breakLabel && items[items.length - 1] !== breakView) {
+                            breakView = '...';
+                            items.push(breakView);
+                        }
+                    }
+                }
+
+                return items;
+            };
+
+            for(let i = 1; i < 20; i++)
+                console.log(
+                    `Selected : ${i} : ${
+                        pagination({
+                            pageRangeDisplayed: 3,
+                            pageCount: 20,
+                            marginPagesDisplayed: 3,
+                            breakLabel: '...',
+                            selected: i,
+                        })
+                    }`
+                );
+        </script>
+    </body>
+</html>
