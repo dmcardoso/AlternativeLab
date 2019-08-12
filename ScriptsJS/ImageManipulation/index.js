@@ -19,7 +19,7 @@ let textData = {
     placementY: 640 - (72 + 20) - 10 //bottom of the image: height - maxHeight - margin
 };
 
-//read template & clone raw image 
+//read template & clone raw image
 Jimp.read(imgRaw)
     .then(tpl => {
         return (tpl.clone().write(imgActive));
@@ -38,7 +38,9 @@ Jimp.read(imgRaw)
                 const {width, height} = calculateImageProportions(logoTpl.bitmap.width, logoTpl.bitmap.height);
                 logoTpl.resize(width, height);
 
-                const {x, y} = left(0,0,width_image, logoTpl.bitmap.height);
+                // const {x, y} = left(0,0,width_image, logoTpl.bitmap.height);
+                // const {x, y} = center(width_image,height_image, width, height);
+                const {x, y} = rigth(0,0, width_image, width, height_image, height);
                 return tpl.composite(logoTpl, x, y, [Jimp.BLEND_DESTINATION_OVER, 0.2, 0.2]);
             })
         }
