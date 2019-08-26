@@ -10,6 +10,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "jimp": "^0.6.0"
+    "dist-exiftool": "^10.53.0",
+    "exif2": "github:Yvem/node-exif",
+    "exiftool": "0.0.3",
+    "jimp": "^0.6.0",
+    "node-exiftool": "^2.3.0"
   }
 }
