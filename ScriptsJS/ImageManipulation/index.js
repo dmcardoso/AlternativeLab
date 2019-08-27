@@ -3,6 +3,7 @@ const path = require('path');
 //if you are following along, create the following 2 images relative to this script:
 let imgRaw = path.resolve(__dirname, 'old_images/daniel.png'); //a 1024px x 1024px backgroound image
 let imgLogo = path.resolve(__dirname, 'old_images/logo.png'); //a 155px x 72px logo
+let imgSand = path.resolve(__dirname, 'old_images/sanduiche.jpg'); //a 155px x 72px logo
 //---
 
 const {center, left, rigth} = require('./src/imagePosition');
@@ -11,14 +12,16 @@ const {calculateImageProportions} = require('./src/imageRatio');
 let imgActive = path.resolve(__dirname, 'new_images/active.jpg');
 let imgExported = path.resolve(__dirname, 'new_images/exported.jpg');
 
-const exif = require('exif2');
+const execFile = require('child_process').execFile;
+const exiftool = require('dist-exiftool');
 
-exif(imgRaw, {},function(err, obj) {
-    if(err){
-        console.log(err);
-    }else{
-        console.log(obj);
+execFile(exiftool, ['-j', imgSand], (error, stdout, stderr) => {
+    if (error) {
+        console.error(`exec error: ${error}`);
+        return;
     }
+    console.log(`stdout: ${stdout}`);
+    console.log(`stderr: ${stderr}`);
 });
 
 let textData = {
