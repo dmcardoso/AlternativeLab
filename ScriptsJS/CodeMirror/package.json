@@ -10,6 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "codemirror": "^5.42.2"
+    "codemirror": "^5.58.2"
   }
 }
