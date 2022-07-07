@@ -10,7 +10,7 @@
     "consign": "^0.1.6",
     "express": "^4.17.0",
     "knex": "^0.16.5",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "mysql": "^2.17.1",
     "nodemon": "^1.19.0",
     "readline-sync": "^1.4.9"
